@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop Plan: Launch Your Portfolio with AI</title>
+  <style>
+    :root {
+      --main: #2563eb;
+      --soft: #eff6ff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --green: #16a34a;
+      --green-soft: #f0fdf4;
+      --amber: #b45309;
+      --amber-soft: #fffbeb;
+      --pink: #be185d;
+      --pink-soft: #fdf2f8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: #f9fafb;
+      line-height: 1.6;
+    }
+    header {
+      background: var(--main);
+      color: #fff;
+      padding: 48px 16px 40px;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    header .eyebrow { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; }
+    header h1 { font-size: 2rem; line-height: 1.25; margin: 8px 0 12px; }
+    header p { font-size: 1.05rem; opacity: 0.92; max-width: 640px; }
+    nav { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
+    nav .wrap { display: flex; gap: 4px; overflow-x: auto; padding: 0 16px; }
+    nav a {
+      white-space: nowrap; padding: 12px 10px; font-size: 0.9rem; font-weight: 600;
+      color: var(--muted); text-decoration: none;
+    }
+    nav a:hover { color: var(--main); }
+    main { padding: 32px 16px 48px; }
+    section {
+      background: #fff; border-radius: 12px; padding: 28px 24px;
+      margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      scroll-margin-top: 60px;
+    }
+    h2 { color: var(--main); font-size: 1.35rem; margin-bottom: 6px; }
+    .lead { color: var(--muted); margin-bottom: 18px; }
+    h3 { font-size: 1.05rem; margin-bottom: 4px; }
+    p + p { margin-top: 10px; }
+    ul { padding-left: 20px; }
+    li { margin: 4px 0; }
+    a { color: var(--main); }
+
+    .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .link-card {
+      display: block; border: 2px solid var(--line); border-radius: 10px; padding: 16px;
+      text-decoration: none; color: var(--ink);
+    }
+    .link-card:hover { border-color: var(--main); }
+    .link-card .icon { font-size: 1.6rem; }
+    .link-card strong { display: block; margin-top: 6px; }
+    .link-card span { color: var(--muted); font-size: 0.9rem; }
+
+    .outcome {
+      background: var(--soft); border-left: 4px solid var(--main);
+      padding: 14px 16px; border-radius: 0 8px 8px 0; margin-top: 18px;
+    }
+
+    .timeline { position: relative; }
+    .step { display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: none; }
+    .time {
+      font-weight: 700; color: var(--main); background: var(--soft);
+      border-radius: 8px; text-align: center; padding: 6px 4px; height: fit-content; font-size: 0.95rem;
+    }
+    .step p { color: #374151; }
+    .step .note { font-size: 0.9rem; color: var(--muted); margin-top: 6px; }
+
+    .bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; margin: 4px 0 20px; }
+    .bar div { height: 100%; }
+
+    .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .box { border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+
+    .tiers { display: grid; gap: 14px; }
+    .tier { border-radius: 10px; padding: 18px; }
+    .tier.young { background: var(--pink-soft); }
+    .tier.mid { background: var(--amber-soft); }
+    .tier.teen { background: var(--green-soft); }
+    .tier .age { display: inline-block; font-weight: 700; font-size: 0.85rem; padding: 2px 10px; border-radius: 999px; color: #fff; margin-bottom: 8px; }
+    .young .age { background: var(--pink); }
+    .mid .age { background: var(--amber); }
+    .teen .age { background: var(--green); }
+    .tier dl { display: grid; grid-template-columns: 110px 1fr; gap: 6px 12px; margin-top: 10px; font-size: 0.95rem; }
+    .tier dt { font-weight: 700; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    td:first-child { font-weight: 600; white-space: nowrap; }
+
+    .ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .idea { border: 2px dashed #d1d5db; border-radius: 10px; padding: 16px; }
+    .idea .tag { font-size: 0.8rem; font-weight: 700; color: var(--main); background: var(--soft); padding: 2px 8px; border-radius: 999px; }
+    .idea h3 { margin-top: 8px; }
+    .idea p { color: var(--muted); font-size: 0.93rem; }
+
+    .checklist h3 { margin-top: 18px; }
+    .checklist h3:first-of-type { margin-top: 4px; }
+    .checklist ul { list-style: none; padding-left: 0; }
+    .checklist li { padding-left: 28px; position: relative; }
+    .checklist li::before { content: "☐"; position: absolute; left: 4px; color: var(--main); }
+
+    .letter { background: #fafafa; border: 1px solid var(--line); border-radius: 10px; padding: 20px; font-size: 0.97rem; }
+
+    footer { text-align: center; color: #9ca3af; font-size: 0.85rem; padding-bottom: 32px; }
+
+    @media (max-width: 560px) {
+      header h1 { font-size: 1.6rem; }
+      .step { grid-template-columns: 1fr; gap: 6px; }
+      .time { width: fit-content; padding: 4px 12px; }
+      .tier dl { grid-template-columns: 1fr; }
+      .tier dt { margin-top: 6px; }
+      td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">TRNT AI &amp; Innovation · Workshop Proposal</div>
+      <h1>Launch your own portfolio website with AI</h1>
+      <p>A 30-minute, hands-on first session. Every student leaves with a personal website live on the internet, and a place to collect everything they build from here on.</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#links">Links</a>
+      <a href="#flow">30-min flow</a>
+      <a href="#ages">By age</a>
+      <a href="#needs">Setup</a>
+      <a href="#next">Next sessions</a>
+      <a href="#trial">Trial run</a>
+      <a href="#parents">Parent note</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap">
+
+      <section id="links">
+        <h2>See it working</h2>
+        <p class="lead">Everything students use already exists and runs.</p>
+        <div class="links">
+          <a class="link-card" href="../">
+            <div class="icon">🌐</div>
+            <strong>Sample student page</strong>
+            <span>What a student publishes by the end of the session</span>
+          </a>
+          <a class="link-card" href="https://github.com/xappert/trnt-portfolio-template">
+            <div class="icon">📁</div>
+            <strong>Template on GitHub</strong>
+            <span>The starter students copy, with a step-by-step guide</span>
+          </a>
+        </div>
+        <div class="outcome">
+          <strong>Why it fits university preparation:</strong> admissions teams and selective programs look for evidence of what a student has made, not only grades. A live portfolio is that evidence, and it grows with every later session.
+        </div>
+      </section>
+
+      <section id="flow">
+        <h2>The 30-minute flow</h2>
+        <p class="lead">Short build cycles with a visible result in each block.</p>
+
+        <div class="bar" aria-hidden="true">
+          <div style="flex:5; background:#93c5fd"></div>
+          <div style="flex:7; background:#60a5fa"></div>
+          <div style="flex:10; background:#3b82f6"></div>
+          <div style="flex:6; background:#2563eb"></div>
+          <div style="flex:2; background:#1e40af"></div>
+        </div>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="time">0–5</div>
+            <div>
+              <h3>Why a portfolio</h3>
+              <p>I show the finished sample page and explain how universities and programs look at what students have built, not just their grades.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="time">5–12</div>
+            <div>
+              <h3>AI as a co-writer</h3>
+              <p>Students tell me about themselves, and I prompt an AI tool live on the projector to draft an "about me" section and suggest a page design. They learn to give clear instructions and to edit the AI's output instead of accepting it as is.</p>
+              <p class="note">The AI tool runs only on my screen, so students don't need their own AI accounts.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="time">12–22</div>
+            <div>
+              <h3>Make it yours</h3>
+              <p>Students copy the ready-made template on GitHub and customize it in the browser: their name, interests, colours, and one thing they're proud of. Numbered markers in the file show exactly what to change. No installs needed.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="time">22–28</div>
+            <div>
+              <h3>Go live</h3>
+              <p>They publish the site with GitHub Pages and share the link with the group.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="time">28–30</div>
+            <div>
+              <h3>What's next</h3>
+              <p>What we'll add over the coming sessions: a first app, a project write-up, and awards or activities.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ages">
+        <h2>Same workshop, three levels</h2>
+        <p class="lead">Every age group makes a page about themselves. What changes is who does the technical steps and how much is explained. GitHub accounts require age 13+, so younger students never need one.</p>
+
+        <div class="tiers">
+          <div class="tier young">
+            <span class="age">Ages 8–10</span>
+            <h3>"All about me" page</h3>
+            <p>Play first, technology second. Students design; I build.</p>
+            <dl>
+              <dt>AI idea</dt><dd>"AI is a helper that has read lots of examples and guesses what comes next." We play <em>Bossy Robot</em>: kids give me instructions to draw a smiley face, and I follow them literally. Vague instructions give funny results, which teaches why clear prompts matter.</dd>
+              <dt>Make it</dt><dd>Each child fills in a paper card: first name, a favourite emoji, three favourite things, one proud moment. They pick their colour from swatches.</dd>
+              <dt>Go live</dt><dd>I type their cards into the template on the projector and publish one class gallery page. Each child sees their own page appear.</dd>
+              <dt>Accounts</dt><dd>None.</dd>
+            </dl>
+          </div>
+
+          <div class="tier mid">
+            <span class="age">Ages 11–12</span>
+            <h3>Guided build</h3>
+            <p>Students do the editing; I handle the parts that need an account.</p>
+            <dl>
+              <dt>AI idea</dt><dd>Students suggest prompts, and we compare two AI answers to spot what's wrong or made up.</dd>
+              <dt>Make it</dt><dd>Students edit their own page on a classroom laptop, changing only the words between the labels.</dd>
+              <dt>Go live</dt><dd>Pages go live under a TRNT classroom account, one link per student.</dd>
+              <dt>Accounts</dt><dd>None for students.</dd>
+            </dl>
+          </div>
+
+          <div class="tier teen">
+            <span class="age">Ages 13–18</span>
+            <h3>Full flow</h3>
+            <p>Students own every step, and the repository is theirs to keep.</p>
+            <dl>
+              <dt>AI idea</dt><dd>Prompt design, editing AI drafts, and why you never trust output you haven't checked.</dd>
+              <dt>Make it</dt><dd>Their own copy of the template, edited in the browser.</dd>
+              <dt>Go live</dt><dd>Their own GitHub Pages link, ready for applications.</dd>
+              <dt>Accounts</dt><dd>A GitHub account, created beforehand with parental consent.</dd>
+            </dl>
+          </div>
+        </div>
+
+        <h3 style="margin-top:24px">Plain-language words I use with younger students</h3>
+        <table>
+          <thead><tr><th>Real term</th><th>What I say</th></tr></thead>
+          <tbody>
+            <tr><td>Repository</td><td>A folder that lives on the internet</td></tr>
+            <tr><td>Commit</td><td>Save, with a note about what you changed</td></tr>
+            <tr><td>GitHub Pages</td><td>The button that turns your folder into a real website</td></tr>
+            <tr><td>HTML tags</td><td>Labels that tell the computer "this is a title" or "this is a list"</td></tr>
+            <tr><td>Prompt</td><td>The instructions you give the AI helper</td></tr>
+            <tr><td>Template</td><td>A colouring page: the outline is done, you add the colour</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="needs">
+        <h2>What's needed</h2>
+        <div class="two">
+          <div class="box">
+            <h3>Students bring</h3>
+            <ul>
+              <li>A laptop with a web browser</li>
+              <li>Ages 13+: a GitHub account, created beforehand with parental consent. I send a one-page setup guide.</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>I prepare</h3>
+            <ul>
+              <li>The portfolio template and a step-by-step handout (<a href="https://github.com/xappert/trnt-portfolio-template#readme">already done</a>)</li>
+              <li>A short parent note explaining the tools and accounts (<a href="#parents">draft below</a>)</li>
+              <li>Paper "About me" cards and a classroom account for students under 13</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="outcome">
+          <strong>Online safety rule for every age:</strong> pages are public, so students use their first name only. No last names, school names, photos of themselves, or contact details.
+        </div>
+
+        <h3 style="margin-top:22px">GitHub account setup guide (ages 13+, at home with a parent)</h3>
+        <ol style="padding-left:20px">
+          <li>Go to <strong>github.com</strong> and click <strong>Sign up</strong>.</li>
+          <li>Use a parent-approved email address.</li>
+          <li>Pick a username that isn't your full name, for example <em>alex-builds</em>. It appears in your website link.</li>
+          <li>Choose the free plan and confirm your email.</li>
+          <li>Bring your username and password to the workshop.</li>
+        </ol>
+      </section>
+
+      <section id="next">
+        <h2>Ideas for the next sessions</h2>
+        <p class="lead">Each one adds a project to the student's portfolio. The last ones lead into the mentor sessions.</p>
+        <div class="ideas">
+          <div class="idea">
+            <span class="tag">Session 2 · Ages 11+</span>
+            <h3>🧮 Grade average calculator</h3>
+            <p>Enter marks, see the average and the gap to a target. A first look at inputs, logic, and outputs.</p>
+          </div>
+          <div class="idea">
+            <span class="tag">Ages 8+</span>
+            <h3>⏳ Countdown to a big day</h3>
+            <p>Days left until an exam, a deadline, or a birthday. Very visual and easy to personalize.</p>
+          </div>
+          <div class="idea">
+            <span class="tag">AI feature · Ages 10+</span>
+            <h3>🤖 Teach a computer to see</h3>
+            <p>Train an image model with Google's Teachable Machine (for example rock, paper, scissors) and add it to the portfolio. It's a real AI feature with no accounts or keys needed.</p>
+          </div>
+          <div class="idea">
+            <span class="tag">AI feature · Ages 13+</span>
+            <h3>📚 AI-built study quiz</h3>
+            <p>Students use AI to write quiz questions on a subject, check them for mistakes, and publish an interactive quiz page.</p>
+          </div>
+          <div class="idea">
+            <span class="tag">Ages 13+</span>
+            <h3>📝 Project write-up</h3>
+            <p>The problem, what they built, and what they learned. This is the format admissions essays and interviews ask for.</p>
+          </div>
+          <div class="idea">
+            <span class="tag">Ages 13+</span>
+            <h3>🏅 Activities &amp; awards</h3>
+            <p>A section for clubs, volunteering, and competitions, so the portfolio becomes a living activity list.</p>
+          </div>
+          <div class="idea">
+            <span class="tag">Capstone · Ages 13+</span>
+            <h3>🎤 Two-minute pitch</h3>
+            <p>Students pitch one project to a visiting mentor and get feedback. This fits the mentor sessions you mentioned.</p>
+          </div>
+        </div>
+        <p style="margin-top:16px; font-size:0.93rem; color:var(--muted)">Safety note: AI is used to help build the pages, never wired into them. Public pages never hold passwords or API keys.</p>
+      </section>
+
+      <section id="trial" class="checklist">
+        <h2>Running a trial session</h2>
+        <p class="lead">A checklist for the first run with a small group of 4–8 students.</p>
+
+        <h3>One week before</h3>
+        <ul>
+          <li>Agree on date, room, age group, and group size</li>
+          <li>Send the parent note and the GitHub setup guide (ages 13+)</li>
+          <li>Check that the room's Wi-Fi allows github.com and *.github.io (some school networks block them)</li>
+          <li>Set up the TRNT classroom GitHub account for students under 13</li>
+        </ul>
+
+        <h3>Two days before</h3>
+        <ul>
+          <li>Confirm students have created accounts; collect usernames</li>
+          <li>Run the full student flow myself on a fresh test account, from copying the template to a live link</li>
+          <li>Print the handout and the "About me" cards</li>
+        </ul>
+
+        <h3>On the day (arrive 20 minutes early)</h3>
+        <ul>
+          <li>Test the projector and the AI tool, and open the sample page</li>
+          <li>Write the Wi-Fi password and the template link on the board</li>
+          <li>Have a backup: if a student can't log in, they pair with a neighbour or use the classroom account</li>
+          <li>Remind everyone of the first-name-only rule before they start typing</li>
+        </ul>
+
+        <h3>During the session</h3>
+        <ul>
+          <li>Keep to the five time blocks and use a visible timer</li>
+          <li>GitHub Pages can take 1–5 minutes to go live, so start publishing at minute 22, not later</li>
+          <li>Note where students get stuck; that becomes next session's fixes</li>
+        </ul>
+
+        <h3>Afterwards</h3>
+        <ul>
+          <li>Collect every student's live link</li>
+          <li>Ask three questions: What did you make? What was hardest? What do you want to build next?</li>
+          <li>Send TRNT a one-page summary: attendance, links published, feedback, and changes for the next run</li>
+        </ul>
+      </section>
+
+      <section id="parents">
+        <h2>Draft parent note</h2>
+        <p class="lead">Short, plain, and covers the questions parents usually ask.</p>
+        <div class="letter">
+          <p>Dear parent or guardian,</p>
+          <p>In our first AI &amp; Innovation session, your child will build a simple personal website and publish it online. It will become a portfolio where they collect the projects they make with us, which they can later use in university and program applications.</p>
+          <p><strong>Tools:</strong> GitHub, a free website used by professional software developers, and an AI writing tool that only the instructor uses, on the classroom screen.</p>
+          <p><strong>Accounts:</strong> students aged 13 and over need a free GitHub account, created at home with you (setup guide attached). Students under 13 do not need any account; the instructor publishes their page.</p>
+          <p><strong>Privacy:</strong> the website is public, so students use their first name only. We do not include last names, school names, photos, or contact details. You can ask us to take a page down at any time.</p>
+          <p>Questions are welcome at any time.</p>
+          <p>TRNT Educational Institute</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    Prepared by Bhavesh Ratanpal · Xappert Incorporated
+  </footer>
+
+</body>
+</html>
