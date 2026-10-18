@@ -2,7 +2,7 @@
 
 A starter website you can make your own and publish on the internet in about 15 minutes. No installs, just a web browser.
 
-**Live example:** https://xappert.github.io/TRNT-portfolio-template/portfolio/
+**Live example:** https://xappert.github.io/trnt-ai-lab/portfolio/
 
 > **Instructors:** when the workshop runs, this folder becomes its own template repository, so each student's copy starts with just their page (`index.html`) and this guide. The steps below are written for that copy.
 
