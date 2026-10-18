@@ -119,6 +119,7 @@
   <nav>
     <div class="wrap">
       <a href="#what">What it is</a>
+      <a href="#mine">My Jarvis</a>
       <a href="#concept">The concept</a>
       <a href="#soul">Sample soul</a>
       <a href="#ages">By age</a>
@@ -131,7 +132,7 @@
 
       <section id="what">
         <h2>From chatbot to agent</h2>
-        <p class="lead">A chatbot answers a question. An agent remembers, uses tools, and gets things done. Students build one with <a href="https://hermes-agent.nousresearch.com/">Hermes Agent</a>, a free, open-source agent from Nous Research that I run as my own Jarvis.</p>
+        <p class="lead">A chatbot answers a question. An agent remembers, uses tools, and gets things done. Students build one with <a href="https://hermes-agent.nousresearch.com/">Hermes Agent</a>, a free, open-source agent from Nous Research. It's what <a href="#mine">my own Jarvis</a> runs on.</p>
         <div class="parts">
           <div class="part">
             <div class="icon">💛</div>
@@ -156,6 +157,41 @@
         </div>
         <div class="outcome">
           <strong>How it connects:</strong> students who did the <a href="../concepts/#helper">AI Helper</a> workshop already know how to design a personality and rules. Jarvis gives that design a memory, skills, and a schedule.
+        </div>
+      </section>
+
+      <section id="mine">
+        <h2>How I built mine</h2>
+        <p class="lead">My Jarvis runs on a Mac mini at home, always on, and wakes up when I say "Hey Jarvis." Students build a scaled-down version of the same design.</p>
+        <div class="parts">
+          <div class="part">
+            <div class="icon">💛</div>
+            <strong>A personality file</strong>
+            <span>One file sets its name, its tone, how short its answers are, and what it never does without asking.</span>
+          </div>
+          <div class="part">
+            <div class="icon">🎙️</div>
+            <strong>"Hey Jarvis"</strong>
+            <span>A small local listener (openWakeWord) hears the name and hands off to Hermes. The mic stays local until then.</span>
+          </div>
+          <div class="part">
+            <div class="icon">🔌</div>
+            <strong>Apps, carefully</strong>
+            <span>Calendar, notes, and email connected with only the tools it needs. Email starts read-only: it briefs me before it ever sends.</span>
+          </div>
+          <div class="part">
+            <div class="icon">📱</div>
+            <strong>Always reachable</strong>
+            <span>It runs as a background service, so the same assistant, with the same memory, answers from my phone.</span>
+          </div>
+          <div class="part">
+            <div class="icon">📈</div>
+            <strong>It learns my routines</strong>
+            <span>Repeat a workflow, like a morning brief, and it writes a reusable skill. I review what it learned.</span>
+          </div>
+        </div>
+        <div class="outcome">
+          <strong>The lesson for students:</strong> the most important part of my setup isn't a feature. It's the permissions: what it may read, what it must ask before doing, and what it never touches. That's the core of this workshop. I wrote about the setup <a href="https://www.linkedin.com/feed/update/urn:li:activity:7515639355605049344/">on LinkedIn</a>.
         </div>
       </section>
 
@@ -184,6 +220,7 @@
             <li><strong>Decide what it remembers:</strong> choose what it should keep, what it must never store, and how to make it forget.</li>
             <li><strong>Teach it a skill:</strong> write a skill file for one task, test it, and improve it when it gets something wrong.</li>
             <li><strong>Put it on a schedule:</strong> automate one helpful task, and decide what it may do without asking first.</li>
+            <li><strong>Give it a voice (stretch goal):</strong> add a "Hey Jarvis" wake word with a small listener that runs on the computer itself, so nothing is sent anywhere until it hears its name.</li>
             <li><strong>Demo and share:</strong> present Jarvis to a mentor, and publish the best skill as an open-source contribution others can use.</li>
           </ol>
         </div>
@@ -235,6 +272,7 @@ You are calm, a little funny, and you never lecture.
           <li><strong>No personal accounts connected:</strong> no email, social media, or payment accounts. The agent only works with what the student gives it in class.</li>
           <li><strong>Instructor-managed AI access:</strong> students never handle API keys. Usage is capped and monitored.</li>
           <li><strong>Permissions are a lesson:</strong> students decide and document what their agent may do without asking. The default is "ask first."</li>
+          <li><strong>Voice stays local:</strong> if students add a wake word, the listener runs on the device and the microphone only connects to the agent after the wake word.</li>
           <li><strong>Consent:</strong> the hands-on build is for ages 13+ with parental consent, and students use first names only.</li>
         </ul>
       </section>

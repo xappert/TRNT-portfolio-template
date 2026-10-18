@@ -4,7 +4,7 @@ A starter website you can make your own and publish on the internet in about 15 
 
 **Live example:** https://xappert.github.io/TRNT-portfolio-template/portfolio/
 
-> **Instructors:** for the workshop, this folder is published as its own template repository, so each student's copy starts with just their page (`index.html`) and this guide. The steps below are written for that copy.
+> **Instructors:** when the workshop runs, this folder becomes its own template repository, so each student's copy starts with just their page (`index.html`) and this guide. The steps below are written for that copy.
 
 ---
 

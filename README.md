@@ -4,6 +4,16 @@ Workshop ideas for TRNT Educational Institute, where students aged 8–18 learn 
 
 **Start here:** https://xappert.github.io/TRNT-portfolio-template/
 
+**Bhavesh Ratanpal** · [bhaveshratanpal.ca](https://www.bhaveshratanpal.ca) · [xappert.ca](https://www.xappert.ca)
+
+## Why I'm a good fit
+
+- **I build AI products.** As founder of Xappert Incorporated, I lead AI product development, including XappertOS, a platform that helps founders turn ideas into ventures. That is the same entrepreneurial thinking TRNT wants students to learn.
+- **I use what I teach.** I run my own voice-activated AI agent ([how I built it](https://xappert.github.io/TRNT-portfolio-template/jarvis/#mine)). I built this site with AI tools too, the same way students would.
+- **I start from the user.** Every workshop here begins with a real person and a real problem, because that is how good products, and good learning, start.
+- **I can explain technology clearly.** My work includes corporate training and writing. The pages here adapt each idea for ages 8–10, 11–12, and 13–18.
+- **I contribute content, not just lessons.** This repository is a working start: a session plan, three concepts, an interactive student activity, and a parent note.
+
 ## The workshops
 
 | Workshop | Ages | Students build | Page |
@@ -21,10 +31,6 @@ Workshop ideas for TRNT Educational Institute, where students aged 8–18 learn 
 | `concepts/` | AI Helper and Smart Gadget concepts, plus the interactive AI Helper Builder |
 | `jarvis/` | Build Your Own Jarvis concept (personal AI agents with Hermes Agent) |
 | `workshop/` | The 30-minute portfolio session plan, with age versions, a trial checklist, and a parent note |
-| `portfolio/` | The student portfolio template and its [step-by-step student guide](portfolio/README.md) |
+| `portfolio/` | The sample student page and its [student guide](portfolio/README.md) |
 
-Every page is plain HTML with no build step, published with GitHub Pages from the `main` branch.
-
----
-
-Prepared by Bhavesh Ratanpal · Xappert Incorporated
+Every page is plain HTML with no build step, published with GitHub Pages.
