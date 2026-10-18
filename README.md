@@ -23,11 +23,14 @@ Workshop ideas for TRNT Educational Institute, where students aged 8–18 learn 
 | 🦾 Build Your Own Jarvis | 13–18 | A personal AI agent with a personality, memory, skills, and a schedule | [Concept](https://xappert.github.io/TRNT-portfolio-template/jarvis/) |
 | 🌐 Launch Your Portfolio | 8–18 | A personal website that collects every project above | [Session plan](https://xappert.github.io/TRNT-portfolio-template/workshop/) · [Sample page](https://xappert.github.io/TRNT-portfolio-template/portfolio/) |
 
+**More ideas:** [The TRNT AI Lab](https://xappert.github.io/TRNT-portfolio-template/lab/) organises these and eight more workshop ideas (AI Storybook Studio, AI Game Studio, AI Music & Media Lab, Vibe-code a Real App, AI Research Project, AI for Good Challenge, AI Ethics & Debate Lab, AI Startup Studio) into Create, Build and Lead tracks, with university mentors and Demo Days.
+
 ## What's in this repository
 
 | Folder | Contents |
 |---|---|
 | `index.html` | Landing page linking every workshop |
+| `lab/` | The AI Lab vision: tracks, all eleven workshop ideas, term rhythm, mentors, and university prep |
 | `concepts/` | AI Helper and Smart Gadget concepts, plus the interactive AI Helper Builder |
 | `jarvis/` | Build Your Own Jarvis concept (personal AI agents with Hermes Agent) |
 | `workshop/` | The 30-minute portfolio session plan, with age versions, a trial checklist, and a parent note |

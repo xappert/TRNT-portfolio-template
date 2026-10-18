@@ -101,6 +101,17 @@
     .stage span { display: block; font-size: 0.88rem; color: var(--muted); margin-top: 2px; }
     .s1 { --c: #60a5fa; } .s2 { --c: var(--violet); } .s3 { --c: var(--teal); } .s4 { --c: var(--amber); } .s5 { --c: var(--night); }
 
+    .lab-teaser {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center;
+      background: linear-gradient(135deg, #db2777, var(--violet) 50%, var(--teal));
+      color: #fff; text-decoration: none; border-radius: 14px; padding: 22px 24px;
+    }
+    .lab-teaser .icon { font-size: 2.2rem; }
+    .lab-teaser strong { display: block; font-size: 1.2rem; }
+    .lab-teaser span span { display: block; opacity: 0.92; font-size: 0.97rem; margin-top: 2px; }
+    .lab-teaser .arrow { font-size: 1.8rem; font-weight: 700; }
+    .lab-teaser:hover { opacity: 0.95; }
+
     .shared { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
     .card { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
     .card .icon { font-size: 1.5rem; }
@@ -133,6 +144,7 @@
       <a class="brand" href="./">TRNT <span>AI &amp; Innovation Lab</span></a>
       <ul>
         <li><a href="#workshops">Workshops</a></li>
+        <li><a href="lab/">The AI Lab</a></li>
         <li><a href="concepts/#helper">AI Helper</a></li>
         <li><a href="concepts/#gadget">Smart Gadget</a></li>
         <li><a href="jarvis/">Jarvis</a></li>
@@ -218,6 +230,17 @@
           <div class="stage s4"><span class="n">4</span><strong>Build an agent</strong><span>Create a Jarvis</span></div>
           <div class="stage s5"><span class="n">5</span><strong>Pitch it</strong><span>Present to a mentor</span></div>
         </div>
+      </section>
+
+      <section id="lab">
+        <a class="lab-teaser" href="lab/">
+          <span class="icon">🧪</span>
+          <span>
+            <strong>See the bigger picture: the TRNT AI Lab</strong>
+            <span>Eleven workshop ideas across three tracks (Create, Build, Lead), with university mentors, Demo Days, and a format that runs across Canada and the US.</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
       </section>
 
       <section id="shared">
