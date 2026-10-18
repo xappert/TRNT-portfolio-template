@@ -25,6 +25,10 @@
       background: #f9fafb;
       line-height: 1.6;
     }
+    .topbar { background: #0f172a; color: #cbd5e1; font-size: 0.88rem; }
+    .topbar .bar { max-width: 860px; margin: 0 auto; display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px; flex-wrap: wrap; }
+    .topbar a { color: #fff; text-decoration: none; font-weight: 600; }
+    .topbar a:hover { text-decoration: underline; }
     header {
       background: var(--main);
       color: #fff;
@@ -131,6 +135,13 @@
 </head>
 <body>
 
+  <div class="topbar">
+    <div class="bar">
+      <a href="../">← TRNT AI &amp; Innovation Lab: all workshops</a>
+      <span>Portfolio · First session · Ages 8–18</span>
+    </div>
+  </div>
+
   <header>
     <div class="wrap">
       <div class="eyebrow">TRNT AI &amp; Innovation · Workshop Proposal</div>
@@ -158,7 +169,7 @@
         <h2>See it working</h2>
         <p class="lead">Everything students use already exists and runs.</p>
         <div class="links">
-          <a class="link-card" href="../">
+          <a class="link-card" href="../portfolio/">
             <div class="icon">🌐</div>
             <strong>Sample student page</strong>
             <span>What a student publishes by the end of the session</span>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your Own Jarvis</title>
+  <style>
+    :root {
+      --main: #b45309;
+      --gold: #f59e0b;
+      --soft: #fffbeb;
+      --night: #0f172a;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: #f9fafb;
+      line-height: 1.6;
+    }
+    .topbar { background: var(--night); color: #cbd5e1; font-size: 0.88rem; }
+    .topbar .wrap { display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px; flex-wrap: wrap; }
+    .topbar a { color: #fff; text-decoration: none; font-weight: 600; }
+    .topbar a:hover { text-decoration: underline; }
+    header {
+      background: radial-gradient(circle at 80% 20%, #1e3a8a 0%, var(--night) 60%);
+      color: #fff;
+      padding: 48px 16px 40px;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    header .eyebrow { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+    header h1 { font-size: 2rem; line-height: 1.25; margin: 8px 0 12px; }
+    header p { font-size: 1.05rem; opacity: 0.9; max-width: 660px; }
+    nav { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
+    nav .wrap { display: flex; gap: 4px; overflow-x: auto; padding: 0 16px; }
+    nav a {
+      white-space: nowrap; padding: 12px 10px; font-size: 0.9rem; font-weight: 600;
+      color: var(--muted); text-decoration: none;
+    }
+    nav a:hover { color: var(--main); }
+    main { padding: 32px 16px 48px; }
+    section {
+      background: #fff; border-radius: 12px; padding: 28px 24px;
+      margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      scroll-margin-top: 60px;
+    }
+    h2 { color: var(--main); font-size: 1.35rem; margin-bottom: 6px; }
+    .lead { color: var(--muted); margin-bottom: 18px; }
+    h3 { font-size: 1.05rem; margin-bottom: 4px; }
+    p + p { margin-top: 10px; }
+    ul, ol { padding-left: 20px; }
+    li { margin: 4px 0; }
+    a { color: var(--main); }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.88em; background: var(--soft); padding: 1px 6px; border-radius: 4px; }
+
+    .parts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+    .part { background: var(--soft); border-radius: 10px; padding: 16px; }
+    .part .icon { font-size: 1.6rem; }
+    .part strong { display: block; margin-top: 4px; }
+    .part span { color: var(--muted); font-size: 0.92rem; }
+
+    .q { border-top: 1px solid var(--line); padding: 16px 0 4px; }
+    .q:first-of-type { border-top: none; padding-top: 0; }
+    .q h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 6px; }
+
+    .path { list-style: none; padding-left: 0; counter-reset: s; }
+    .path li { counter-increment: s; position: relative; padding: 6px 0 6px 40px; }
+    .path li::before {
+      content: counter(s); position: absolute; left: 0; top: 6px;
+      width: 26px; height: 26px; border-radius: 50%; color: #fff; background: var(--main);
+      font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center;
+    }
+
+    .soul {
+      background: var(--night); color: #e2e8f0; border-radius: 10px; padding: 18px 20px;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.86rem; white-space: pre-wrap; line-height: 1.55;
+    }
+    .soul .c { color: #94a3b8; }
+    .soul .h { color: var(--gold); font-weight: 700; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    td:first-child { font-weight: 600; white-space: nowrap; }
+
+    .outcome {
+      background: var(--soft); border-left: 4px solid var(--gold);
+      padding: 14px 16px; border-radius: 0 8px 8px 0; margin-top: 18px;
+    }
+
+    footer { text-align: center; color: #9ca3af; font-size: 0.85rem; padding-bottom: 32px; }
+
+    @media (max-width: 560px) {
+      header h1 { font-size: 1.6rem; }
+      td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <a href="../">← TRNT AI &amp; Innovation Lab: all workshops</a>
+      <span>Advanced workshop · Ages 13–18</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">Advanced workshop · Personal AI agents</div>
+      <h1>🦾 Build your own Jarvis</h1>
+      <p>Students build a personal AI agent that knows them, remembers what matters, learns new skills, and works on a schedule. It's the same kind of technology the biggest tech companies are racing to build, made with real open-source tools.</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#what">What it is</a>
+      <a href="#concept">The concept</a>
+      <a href="#soul">Sample soul</a>
+      <a href="#ages">By age</a>
+      <a href="#safety">Safety setup</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap">
+
+      <section id="what">
+        <h2>From chatbot to agent</h2>
+        <p class="lead">A chatbot answers a question. An agent remembers, uses tools, and gets things done. Students build one with <a href="https://hermes-agent.nousresearch.com/">Hermes Agent</a>, a free, open-source agent from Nous Research that I run as my own Jarvis.</p>
+        <div class="parts">
+          <div class="part">
+            <div class="icon">💛</div>
+            <strong>A soul</strong>
+            <span>A personality file the student writes: who it is, how it talks, and its rules.</span>
+          </div>
+          <div class="part">
+            <div class="icon">🧠</div>
+            <strong>A memory</strong>
+            <span>It remembers what the student chooses to teach it, across conversations.</span>
+          </div>
+          <div class="part">
+            <div class="icon">🛠️</div>
+            <strong>Skills</strong>
+            <span>Step-by-step abilities it learns, like "turn my notes into flashcards."</span>
+          </div>
+          <div class="part">
+            <div class="icon">⏰</div>
+            <strong>A schedule</strong>
+            <span>Tasks it does by itself, like a morning study briefing before a test.</span>
+          </div>
+        </div>
+        <div class="outcome">
+          <strong>How it connects:</strong> students who did the <a href="../concepts/#helper">AI Helper</a> workshop already know how to design a personality and rules. Jarvis gives that design a memory, skills, and a schedule.
+        </div>
+      </section>
+
+      <section id="concept">
+        <h2>The concept</h2>
+        <p class="lead">The same four questions as the other concepts.</p>
+
+        <div class="q">
+          <h3>Student outcome</h3>
+          <p>Each student leaves with their own working AI agent and a clear picture of how it works inside. It has a name and personality they wrote, a memory they control, at least one skill they taught it, and one task it runs on its own schedule. For example, a Jarvis that quizzes them every evening before an exam, or one that plans their week around practices and assignments.</p>
+        </div>
+
+        <div class="q">
+          <h3>Why families would love it</h3>
+          <ul>
+            <li>"AI agents" are the next wave after chatbots. Students who understand how they work from the inside, including memory, tools, and permissions, will use them more wisely and build with them sooner.</li>
+            <li>It's genuinely useful. A study agent built around the student's own schedule and notes helps with schoolwork without doing the work for them.</li>
+            <li>It's built on open-source software that professionals use, not a toy. That makes it a serious item for a portfolio, a résumé, or a university application.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <h3>How it grows into a deeper project</h3>
+          <ol class="path">
+            <li><strong>Give it a soul:</strong> write the personality file, including its name, voice, and the rules it never breaks.</li>
+            <li><strong>Decide what it remembers:</strong> choose what it should keep, what it must never store, and how to make it forget.</li>
+            <li><strong>Teach it a skill:</strong> write a skill file for one task, test it, and improve it when it gets something wrong.</li>
+            <li><strong>Put it on a schedule:</strong> automate one helpful task, and decide what it may do without asking first.</li>
+            <li><strong>Demo and share:</strong> present Jarvis to a mentor, and publish the best skill as an open-source contribution others can use.</li>
+          </ol>
+        </div>
+
+        <div class="q">
+          <h3>Students' own ideas and decisions</h3>
+          <p>Students decide what their Jarvis is for, who it is, and what it's allowed to do. The most important decisions are about trust: which tools it can use, what it remembers about them, and what it must ask before doing. These are the same questions AI companies face. Students answer them for their own agent and explain their reasoning in their portfolio write-up.</p>
+        </div>
+      </section>
+
+      <section id="soul">
+        <h2>What a student writes: a sample soul</h2>
+        <p class="lead">The personality file is plain language. It's the student's design, written in their own words.</p>
+<div class="soul"><span class="h"># Who you are</span>
+You are Atlas, my study partner for Grade 11.
+You are calm, a little funny, and you never lecture.
+
+<span class="h"># What you help with</span>
+- Planning my week around basketball and assignments
+- Quizzing me before tests, using my class notes
+
+<span class="h"># Rules you never break</span>
+- Give hints, not answers, on homework
+- Never store my full name, school, or address
+- Ask me before you add anything to my schedule
+- If you're not sure, say so
+
+<span class="c"># Written by the student · checked by the instructor</span></div>
+      </section>
+
+      <section id="ages">
+        <h2>How it adapts by age</h2>
+        <p class="lead">The full build is for teenagers. Younger students still meet the idea, without any accounts or installs.</p>
+        <table>
+          <thead><tr><th>Age</th><th>What students do</th></tr></thead>
+          <tbody>
+            <tr><td>8–12</td><td>Watch a live demo of the instructor's Jarvis, then design their own agent's soul on a paper card: name, personality, three jobs, three rules. The class votes on which rules matter most.</td></tr>
+            <tr><td>13–15</td><td>Guided build in a shared classroom setup. Students write the soul and one skill, and test them with the instructor's agent.</td></tr>
+            <tr><td>16–18</td><td>Full build: their own agent in a safe sandbox, with memory, a custom skill, a scheduled task, and a written explanation of their trust decisions.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="safety">
+        <h2>Safety setup</h2>
+        <p class="lead">Agents can take real actions, so the setup matters more here than in any other workshop.</p>
+        <ul>
+          <li><strong>Sandboxed:</strong> student agents run in an isolated environment (Hermes supports Docker and cloud sandboxes), never on a family computer with access to personal files.</li>
+          <li><strong>No personal accounts connected:</strong> no email, social media, or payment accounts. The agent only works with what the student gives it in class.</li>
+          <li><strong>Instructor-managed AI access:</strong> students never handle API keys. Usage is capped and monitored.</li>
+          <li><strong>Permissions are a lesson:</strong> students decide and document what their agent may do without asking. The default is "ask first."</li>
+          <li><strong>Consent:</strong> the hands-on build is for ages 13+ with parental consent, and students use first names only.</li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    Prepared by Bhavesh Ratanpal · Xappert Incorporated · Hermes Agent is open-source software by Nous Research
+  </footer>
+
+</body>
+</html>

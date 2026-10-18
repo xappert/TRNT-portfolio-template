@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✏️ STEP 1: Change this to your first name -->
+  <title>Alex's Portfolio</title>
+
+  <style>
+    /* ✏️ STEP 2: Pick your colours. Change these two lines only.
+       Try: #2563eb (blue), #16a34a (green), #db2777 (pink), #ea580c (orange), #7c3aed (purple) */
+    :root {
+      --main-colour: #2563eb;
+      --soft-colour: #eff6ff;
+    }
+
+    /* ---------- You don't need to change anything below this line ---------- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1f2937;
+      background: #f9fafb;
+      line-height: 1.6;
+    }
+    header {
+      background: var(--main-colour);
+      color: #fff;
+      text-align: center;
+      padding: 56px 16px 48px;
+    }
+    .avatar {
+      width: 96px; height: 96px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+    }
+    header h1 { font-size: 2.2rem; }
+    header p { font-size: 1.1rem; opacity: 0.9; margin-top: 4px; }
+    main { max-width: 720px; margin: 0 auto; padding: 32px 16px 48px; }
+    section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    h2 { color: var(--main-colour); font-size: 1.3rem; margin-bottom: 12px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--soft-colour);
+      color: var(--main-colour);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .projects { display: grid; gap: 12px; }
+    .project {
+      border: 2px dashed #d1d5db;
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .project.done { border: 2px solid var(--main-colour); }
+    .project h3 { font-size: 1.05rem; }
+    .project p { color: #6b7280; font-size: 0.95rem; }
+    footer { text-align: center; color: #9ca3af; font-size: 0.85rem; padding-bottom: 32px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- ✏️ STEP 3: Pick an emoji that represents you (no photos of yourself) -->
+    <div class="avatar">🚀</div>
+
+    <!-- ✏️ STEP 4: Your first name only, and one line about you -->
+    <h1>Hi, I'm Alex</h1>
+    <p>I like building things and figuring out how they work.</p>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>About me</h2>
+      <!-- ✏️ STEP 5: 2–3 sentences about you. You can ask AI to help, then edit it so it sounds like you. -->
+      <p>
+        I'm a Grade 10 student who loves science and video games. I'm curious about how apps
+        are made, and this website is the first one I've built myself. I'd like to study
+        engineering one day.
+      </p>
+    </section>
+
+    <section>
+      <h2>Things I'm into</h2>
+      <!-- ✏️ STEP 6: Change these to your own interests. Copy a line to add more. -->
+      <div class="tags">
+        <span class="tag">Robotics</span>
+        <span class="tag">Basketball</span>
+        <span class="tag">Drawing</span>
+        <span class="tag">Space</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Something I'm proud of</h2>
+      <!-- ✏️ STEP 7: One thing you did that you're proud of: a project, an award, helping someone. -->
+      <p>
+        Last year I helped organise a food drive at my school. We collected over 300 items
+        for a local food bank.
+      </p>
+    </section>
+
+    <section>
+      <h2>My projects</h2>
+      <div class="projects">
+        <div class="project done">
+          <h3>✅ This website</h3>
+          <p>Built and published with GitHub Pages, with help from AI.</p>
+        </div>
+        <!-- These fill up as you complete more workshops -->
+        <div class="project">
+          <h3>🔜 My AI Helper</h3>
+          <p>Coming soon: an AI assistant I design for someone I know</p>
+        </div>
+        <div class="project">
+          <h3>🔜 My smart gadget</h3>
+          <p>Coming soon: an invention that uses a model I train myself</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Built at the TRNT AI &amp; Innovation Workshop
+  </footer>
+
+</body>
+</html>

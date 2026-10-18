@@ -3,138 +3,245 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- ✏️ STEP 1: Change this to your first name -->
-  <title>Alex's Portfolio</title>
-
+  <title>TRNT AI &amp; Innovation Lab</title>
+  <meta name="description" content="Workshop ideas where students aged 8–18 learn AI by building real things: AI helpers, smart gadgets, personal AI agents, and a portfolio to show them.">
   <style>
-    /* ✏️ STEP 2: Pick your colours. Change these two lines only.
-       Try: #2563eb (blue), #16a34a (green), #db2777 (pink), #ea580c (orange), #7c3aed (purple) */
     :root {
-      --main-colour: #2563eb;
-      --soft-colour: #eff6ff;
+      --main: #2563eb;
+      --soft: #eff6ff;
+      --violet: #7c3aed;
+      --violet-soft: #f5f3ff;
+      --teal: #0f766e;
+      --teal-soft: #f0fdfa;
+      --amber: #b45309;
+      --amber-soft: #fffbeb;
+      --night: #0f172a;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
     }
-
-    /* ---------- You don't need to change anything below this line ---------- */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #1f2937;
+      color: var(--ink);
       background: #f9fafb;
       line-height: 1.6;
     }
+    a { color: var(--main); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+
+    .menu { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+    .menu .wrap { display: flex; align-items: center; gap: 16px; }
+    .brand { font-weight: 800; color: var(--ink); text-decoration: none; white-space: nowrap; padding: 12px 0; }
+    .brand span { color: var(--main); }
+    .menu ul { list-style: none; display: flex; gap: 2px; overflow-x: auto; margin-left: auto; }
+    .menu li a {
+      display: block; white-space: nowrap; padding: 14px 10px; font-size: 0.9rem; font-weight: 600;
+      color: var(--muted); text-decoration: none;
+    }
+    .menu li a:hover { color: var(--main); }
+
     header {
-      background: var(--main-colour);
+      background: linear-gradient(135deg, var(--main) 0%, var(--violet) 60%, var(--night) 100%);
       color: #fff;
-      text-align: center;
-      padding: 56px 16px 48px;
+      padding: 64px 0 56px;
     }
-    .avatar {
-      width: 96px; height: 96px;
-      margin: 0 auto 16px;
-      border-radius: 50%;
-      background: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 48px;
+    header .eyebrow { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; }
+    header h1 { font-size: 2.5rem; line-height: 1.15; margin: 10px 0 14px; max-width: 720px; }
+    header p { font-size: 1.1rem; opacity: 0.92; max-width: 640px; }
+    .ctas { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+    .cta { display: inline-block; padding: 11px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+    .cta.primary { background: #fff; color: var(--violet); }
+    .cta.ghost { border: 2px solid rgba(255,255,255,0.7); color: #fff; }
+    .cta:hover { opacity: 0.9; }
+
+    main { padding: 40px 0 48px; }
+    section { margin-bottom: 44px; scroll-margin-top: 64px; }
+    h2 { font-size: 1.6rem; margin-bottom: 6px; }
+    .lead { color: var(--muted); margin-bottom: 20px; max-width: 680px; }
+
+    .workshops { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .ws {
+      background: #fff; border-radius: 14px; padding: 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border-top: 5px solid var(--c); display: flex; flex-direction: column;
     }
-    header h1 { font-size: 2.2rem; }
-    header p { font-size: 1.1rem; opacity: 0.9; margin-top: 4px; }
-    main { max-width: 720px; margin: 0 auto; padding: 32px 16px 48px; }
-    section {
-      background: #fff;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    .ws .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .ws .icon { font-size: 2rem; }
+    .ws .age { font-size: 0.8rem; font-weight: 700; color: var(--c); background: var(--cs); padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+    .ws h3 { font-size: 1.2rem; margin: 8px 0 4px; color: var(--c); }
+    .ws p { font-size: 0.97rem; }
+    .ws .builds { margin-top: 10px; font-size: 0.92rem; color: var(--muted); }
+    .ws .builds strong { color: var(--ink); }
+    .ws .links { margin-top: auto; padding-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .ws .links a {
+      font-size: 0.9rem; font-weight: 700; text-decoration: none; padding: 7px 14px; border-radius: 8px;
+      background: var(--cs); color: var(--c);
     }
-    h2 { color: var(--main-colour); font-size: 1.3rem; margin-bottom: 12px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      background: var(--soft-colour);
-      color: var(--main-colour);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.95rem;
+    .ws .links a.go { background: var(--c); color: #fff; }
+    .helper { --c: var(--violet); --cs: var(--violet-soft); }
+    .gadget { --c: var(--teal); --cs: var(--teal-soft); }
+    .jarvis { --c: var(--amber); --cs: var(--amber-soft); }
+    .portfolio { --c: var(--main); --cs: var(--soft); }
+
+    .thread {
+      margin-top: 16px; background: #fff; border-radius: 14px; padding: 20px 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; border-left: 5px solid var(--main);
     }
-    .projects { display: grid; gap: 12px; }
-    .project {
-      border: 2px dashed #d1d5db;
-      border-radius: 10px;
-      padding: 16px;
+    .thread .icon { font-size: 2rem; }
+    .thread h3 { color: var(--main); font-size: 1.1rem; }
+    .thread p { font-size: 0.95rem; color: var(--ink); }
+    .thread .links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .thread .links a { font-size: 0.9rem; font-weight: 700; text-decoration: none; padding: 7px 14px; border-radius: 8px; background: var(--soft); color: var(--main); white-space: nowrap; }
+
+    .path { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; background: #fff; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); overflow: hidden; }
+    .stage { padding: 20px 16px; position: relative; text-align: center; }
+    .stage + .stage { border-left: 1px solid var(--line); }
+    .stage .n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; align-items: center; justify-content: center; color: #fff; font-weight: 800; background: var(--c); }
+    .stage strong { display: block; margin-top: 8px; }
+    .stage span { display: block; font-size: 0.88rem; color: var(--muted); margin-top: 2px; }
+    .s1 { --c: #60a5fa; } .s2 { --c: var(--violet); } .s3 { --c: var(--teal); } .s4 { --c: var(--amber); } .s5 { --c: var(--night); }
+
+    .shared { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .card { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .card .icon { font-size: 1.5rem; }
+    .card strong { display: block; margin-top: 4px; }
+    .card span { font-size: 0.93rem; color: var(--muted); }
+
+    .about { background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .about p + p { margin-top: 10px; }
+
+    footer { text-align: center; color: #9ca3af; font-size: 0.85rem; padding: 0 16px 32px; }
+
+    @media (max-width: 760px) {
+      header h1 { font-size: 1.9rem; }
+      .menu .wrap { flex-direction: column; align-items: stretch; gap: 0; }
+      .menu ul { margin-left: 0; }
+      .brand { padding: 10px 0 0; }
+      .path { grid-template-columns: 1fr; }
+      .stage { text-align: left; display: grid; grid-template-columns: 30px 1fr; gap: 0 12px; }
+      .stage .n { grid-row: span 2; }
+      .stage strong { margin-top: 0; }
+      .stage + .stage { border-left: none; border-top: 1px solid var(--line); }
+      .thread { grid-template-columns: 1fr; }
     }
-    .project.done { border: 2px solid var(--main-colour); }
-    .project h3 { font-size: 1.05rem; }
-    .project p { color: #6b7280; font-size: 0.95rem; }
-    footer { text-align: center; color: #9ca3af; font-size: 0.85rem; padding-bottom: 32px; }
   </style>
 </head>
 <body>
 
-  <header>
-    <!-- ✏️ STEP 3: Pick an emoji that represents you (no photos of yourself) -->
-    <div class="avatar">🚀</div>
+  <div class="menu">
+    <div class="wrap">
+      <a class="brand" href="./">TRNT <span>AI &amp; Innovation Lab</span></a>
+      <ul>
+        <li><a href="#workshops">Workshops</a></li>
+        <li><a href="concepts/#helper">AI Helper</a></li>
+        <li><a href="concepts/#gadget">Smart Gadget</a></li>
+        <li><a href="jarvis/">Jarvis</a></li>
+        <li><a href="workshop/">Portfolio</a></li>
+        <li><a href="concepts/ai-helper/">Try the builder</a></li>
+        <li><a href="portfolio/">Sample student page</a></li>
+      </ul>
+    </div>
+  </div>
 
-    <!-- ✏️ STEP 4: Your first name only, and one line about you -->
-    <h1>Hi, I'm Alex</h1>
-    <p>I like building things and figuring out how they work.</p>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">Workshop ideas · Ages 8–18</div>
+      <h1>Students learn AI by building things they actually want.</h1>
+      <p>An AI assistant for someone they love. A gadget that can see. A personal Jarvis of their own. Every project starts with a real person and a real problem, and every decision belongs to the student.</p>
+      <div class="ctas">
+        <a class="cta primary" href="#workshops">Explore the workshops</a>
+        <a class="cta ghost" href="concepts/ai-helper/">Try the AI Helper Builder →</a>
+      </div>
+    </div>
   </header>
 
   <main>
+    <div class="wrap">
 
-    <section>
-      <h2>About me</h2>
-      <!-- ✏️ STEP 5: 2–3 sentences about you. You can ask AI to help, then edit it so it sounds like you. -->
-      <p>
-        I'm a Grade 10 student who loves science and video games. I'm curious about how apps
-        are made, and this website is the first one I've built myself. I'd like to study
-        engineering one day.
-      </p>
-    </section>
+      <section id="workshops">
+        <h2>The workshops</h2>
+        <p class="lead">Each one stands on its own and ends with something students can show at home. Taken together, they form a path from using AI to building it.</p>
 
-    <section>
-      <h2>Things I'm into</h2>
-      <!-- ✏️ STEP 6: Change these to your own interests. Copy a line to add more. -->
-      <div class="tags">
-        <span class="tag">Robotics</span>
-        <span class="tag">Basketball</span>
-        <span class="tag">Drawing</span>
-        <span class="tag">Space</span>
-      </div>
-    </section>
+        <div class="workshops">
+          <article class="ws helper">
+            <div class="top"><span class="icon">🤖</span><span class="age">Ages 8–18</span></div>
+            <h3>Build Your Own AI Helper</h3>
+            <p>Students design an AI assistant for a real person in their life, such as a study buddy for a sibling or a recipe helper for a grandparent, then test it with them and improve it.</p>
+            <p class="builds"><strong>They learn:</strong> clear instructions, product thinking, and safety rules they write themselves.</p>
+            <div class="links">
+              <a class="go" href="concepts/ai-helper/">Try the builder</a>
+              <a href="concepts/#helper">Concept</a>
+            </div>
+          </article>
 
-    <section>
-      <h2>Something I'm proud of</h2>
-      <!-- ✏️ STEP 7: One thing you did that you're proud of: a project, an award, helping someone. -->
-      <p>
-        Last year I helped organise a food drive at my school. We collected over 300 items
-        for a local food bank.
-      </p>
-    </section>
+          <article class="ws gadget">
+            <div class="top"><span class="icon">📷</span><span class="age">Ages 8–18</span></div>
+            <h3>Invent a Smart Gadget</h3>
+            <p>Students train their own image, sound, or pose model and turn it into an invention: a recycling sorter, a posture coach, a sign-language reader.</p>
+            <p class="builds"><strong>They learn:</strong> how AI learns from data, why it fails, and how to make it fairer.</p>
+            <div class="links">
+              <a class="go" href="concepts/#gadget">Concept</a>
+            </div>
+          </article>
 
-    <section>
-      <h2>My projects</h2>
-      <div class="projects">
-        <div class="project done">
-          <h3>✅ This website</h3>
-          <p>Built and published with GitHub Pages, with help from AI.</p>
+          <article class="ws jarvis">
+            <div class="top"><span class="icon">🦾</span><span class="age">Ages 13–18</span></div>
+            <h3>Build Your Own Jarvis</h3>
+            <p>Students build a personal AI agent with a personality they write, a memory they control, skills they teach it, and tasks it runs on a schedule.</p>
+            <p class="builds"><strong>They learn:</strong> how AI agents work inside, and the trust decisions behind them.</p>
+            <div class="links">
+              <a class="go" href="jarvis/">Concept</a>
+            </div>
+          </article>
         </div>
-        <!-- These fill up as you complete more workshops -->
-        <div class="project">
-          <h3>🔜 My AI Helper</h3>
-          <p>Coming soon: an AI assistant I design for someone I know</p>
-        </div>
-        <div class="project">
-          <h3>🔜 My smart gadget</h3>
-          <p>Coming soon: an invention that uses a model I train myself</p>
-        </div>
-      </div>
-    </section>
 
+        <div class="thread portfolio">
+          <span class="icon">🌐</span>
+          <div>
+            <h3>Running through all of them: a portfolio of their own</h3>
+            <p>In a 30-minute first session, students publish a personal website. Every project they build afterwards gets added to it, so it becomes evidence of real work for university and program applications.</p>
+          </div>
+          <div class="links">
+            <a href="workshop/">Session plan</a>
+            <a href="portfolio/">Sample page</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="path">
+        <h2>A path, not a one-off</h2>
+        <p class="lead">Students can join at any point, and each step builds on the last.</p>
+        <div class="path">
+          <div class="stage s1"><span class="n">1</span><strong>Show it</strong><span>Publish a portfolio</span></div>
+          <div class="stage s2"><span class="n">2</span><strong>Design AI</strong><span>Build an AI Helper</span></div>
+          <div class="stage s3"><span class="n">3</span><strong>Train AI</strong><span>Invent a Smart Gadget</span></div>
+          <div class="stage s4"><span class="n">4</span><strong>Build an agent</strong><span>Create a Jarvis</span></div>
+          <div class="stage s5"><span class="n">5</span><strong>Pitch it</strong><span>Present to a mentor</span></div>
+        </div>
+      </section>
+
+      <section id="shared">
+        <h2>What every workshop has in common</h2>
+        <p class="lead">The tools change. The approach doesn't.</p>
+        <div class="shared">
+          <div class="card"><div class="icon">🎯</div><strong>A real person, a real problem</strong><span>Students build for someone they know and test it with them.</span></div>
+          <div class="card"><div class="icon">🧭</div><strong>Student decisions</strong><span>Who it's for, how it behaves, and what "good enough" means are the student's choices.</span></div>
+          <div class="card"><div class="icon">🛡️</div><strong>Safety by design</strong><span>First names only, no personal data in AI tools, and no accounts for students under 13.</span></div>
+          <div class="card"><div class="icon">🏆</div><strong>Something to show</strong><span>Every project ends up in the portfolio and can lead to a mentor pitch.</span></div>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <h2>About these ideas</h2>
+        <p>I build AI products for a living. At Xappert, our product work starts from what users need and then tests whether the solution actually works for them, and I run my own AI agent, a Jarvis built on Hermes, day to day. These workshops give students the same process at their level: find a real person, solve a real problem, test it, and explain it.</p>
+        <p>The concepts are a starting point for discussion. Once we agree on a direction, I'm happy to shape the teaching format, session length, and materials around it.</p>
+      </section>
+
+    </div>
   </main>
 
   <footer>
-    Built at the TRNT AI &amp; Innovation Workshop
+    Prepared for TRNT Educational Institute by Bhavesh Ratanpal · Xappert Incorporated
   </footer>
 
 </body>
