@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TRNT AI &amp; Innovation Lab</title>
-  <meta name="description" content="Workshop ideas where students aged 8–18 learn AI by building real things: AI helpers, smart gadgets, personal AI agents, and a portfolio to show them.">
+  <meta name="description" content="Workshop ideas where students aged 8–18 learn AI by building real things: personal AI agents, smart gadgets, games, startups, and a portfolio to show them.">
   <style>
     :root {
       --main: #2563eb;
@@ -34,12 +34,25 @@
     .menu .wrap { display: flex; align-items: center; gap: 16px; }
     .brand { font-weight: 800; color: var(--ink); text-decoration: none; white-space: nowrap; padding: 12px 0; }
     .brand span { color: var(--main); }
-    .menu ul { list-style: none; display: flex; gap: 2px; overflow-x: auto; margin-left: auto; }
-    .menu li a {
-      display: block; white-space: nowrap; padding: 14px 10px; font-size: 0.9rem; font-weight: 600;
-      color: var(--muted); text-decoration: none;
+    .menu .top { list-style: none; display: flex; gap: 2px; margin-left: auto; align-items: center; }
+    .menu .top > li { position: relative; }
+    .menu .top > li > a, .menu .top > li > button {
+      display: block; white-space: nowrap; padding: 14px 10px; font: inherit; font-size: 0.9rem; font-weight: 600;
+      color: var(--muted); text-decoration: none; background: none; border: none; cursor: pointer;
     }
-    .menu li a:hover { color: var(--main); }
+    .menu .top > li > a:hover, .menu .top > li > button:hover { color: var(--main); }
+    .menu .top > li > a.star { color: #fff; background: var(--amber); border-radius: 999px; padding: 6px 14px; margin-right: 6px; }
+    .menu .top > li > a.star:hover { color: #fff; opacity: 0.9; }
+    .menu .caret { font-size: 0.7rem; margin-left: 4px; }
+    .menu .sub {
+      display: none; list-style: none; position: absolute; top: 100%; right: 0; min-width: 260px;
+      background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12); z-index: 20;
+    }
+    .menu .dd:hover .sub, .menu .dd:focus-within .sub, .menu .dd.open .sub { display: block; }
+    .menu .sub a { display: block; padding: 8px 12px; border-radius: 8px; text-decoration: none; color: var(--ink); font-size: 0.93rem; font-weight: 600; }
+    .menu .sub a small { display: block; font-weight: 400; color: var(--muted); font-size: 0.82rem; }
+    .menu .sub a:hover { background: var(--soft); color: var(--main); }
 
     header {
       background: linear-gradient(135deg, var(--main) 0%, var(--violet) 60%, var(--night) 100%);
@@ -111,6 +124,26 @@
     .lab-teaser span span { display: block; opacity: 0.92; font-size: 0.97rem; margin-top: 2px; }
     .lab-teaser .arrow { font-size: 1.8rem; font-weight: 700; }
     .lab-teaser:hover { opacity: 0.95; }
+    .lab-teaser.incubator { margin-top: 14px; background: linear-gradient(135deg, var(--night), #4f46e5 55%, #16a34a); }
+
+    .feature {
+      background: radial-gradient(circle at 85% 15%, #1e3a8a 0%, var(--night) 65%);
+      color: #e2e8f0; border-radius: 18px; padding: 32px; position: relative; overflow: hidden;
+    }
+    .feature::after {
+      content: ""; position: absolute; right: -60px; bottom: -60px; width: 220px; height: 220px; border-radius: 50%;
+      border: 10px solid rgba(245,158,11,0.25); box-shadow: 0 0 60px rgba(56,189,248,0.25), inset 0 0 40px rgba(56,189,248,0.2);
+    }
+    .feature-text { position: relative; z-index: 1; max-width: 760px; }
+    .feature .kicker { color: #f59e0b; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .feature h2 { color: #fff; font-size: 2rem; margin: 6px 0 10px; }
+    .feature p { font-size: 1.05rem; }
+    .feature p strong { color: #fcd34d; }
+    .feature-ages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+    .feature-ages div { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px 14px; }
+    .feature-ages b { display: block; color: #f59e0b; font-size: 0.9rem; }
+    .feature-ages span { font-size: 0.9rem; color: #cbd5e1; }
+    .feature .cta.primary { background: #f59e0b; color: var(--night); }
 
     .shared { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
     .card { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
@@ -126,7 +159,9 @@
     @media (max-width: 760px) {
       header h1 { font-size: 1.9rem; }
       .menu .wrap { flex-direction: column; align-items: stretch; gap: 0; }
-      .menu ul { margin-left: 0; }
+      .menu .top { margin-left: 0; flex-wrap: wrap; }
+      .menu .sub { right: auto; left: 0; }
+      .menu .dd:last-of-type .sub { left: auto; right: 0; }
       .brand { padding: 10px 0 0; }
       .path { grid-template-columns: 1fr; }
       .stage { text-align: left; display: grid; grid-template-columns: 30px 1fr; gap: 0 12px; }
@@ -134,6 +169,9 @@
       .stage strong { margin-top: 0; }
       .stage + .stage { border-left: none; border-top: 1px solid var(--line); }
       .thread { grid-template-columns: 1fr; }
+      .feature { padding: 24px 20px; }
+      .feature h2 { font-size: 1.6rem; }
+      .feature-ages { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -142,15 +180,27 @@
   <div class="menu">
     <div class="wrap">
       <a class="brand" href="./">TRNT <span>AI &amp; Innovation Lab</span></a>
-      <ul>
-        <li><a href="#workshops">Workshops</a></li>
-        <li><a href="lab/">The AI Lab</a></li>
-        <li><a href="concepts/#helper">AI Helper</a></li>
-        <li><a href="concepts/#gadget">Smart Gadget</a></li>
-        <li><a href="jarvis/">Jarvis</a></li>
-        <li><a href="workshop/">Portfolio</a></li>
-        <li><a href="concepts/ai-helper/">Try the builder</a></li>
-        <li><a href="portfolio/">Sample student page</a></li>
+      <ul class="top">
+        <li><a class="star" href="jarvis/">🦾 My workshop: Jarvis</a></li>
+        <li class="dd">
+          <button type="button" aria-expanded="false" aria-haspopup="true">Workshops<span class="caret">▼</span></button>
+          <ul class="sub">
+            <li><a href="jarvis/">🦾 Build Your Own Jarvis<small>My featured workshop</small></a></li>
+            <li><a href="concepts/#gadget">📷 Invent a Smart Gadget<small>Train AI to see and hear</small></a></li>
+            <li><a href="lab/#game">🎮 AI Game Studio<small>Build a game with AI</small></a></li>
+            <li><a href="lab/#startup">💡 AI Startup Studio<small>From problem to pitch</small></a></li>
+            <li><a href="workshop/">🌐 Launch Your Portfolio<small>The 30-minute first session</small></a></li>
+            <li><a href="portfolio/">👀 Sample student page<small>What students publish</small></a></li>
+          </ul>
+        </li>
+        <li class="dd">
+          <button type="button" aria-expanded="false" aria-haspopup="true">Vision<span class="caret">▼</span></button>
+          <ul class="sub">
+            <li><a href="lab/">🧪 The TRNT AI Lab<small>Ten workshop ideas in three tracks</small></a></li>
+            <li><a href="incubator/">🚀 Student Product Incubator<small>From classroom to real products</small></a></li>
+          </ul>
+        </li>
+        <li><a href="#about">About</a></li>
       </ul>
     </div>
   </div>
@@ -159,10 +209,10 @@
     <div class="wrap">
       <div class="eyebrow">Workshop ideas · Ages 8–18</div>
       <h1>Students learn AI by building things they actually want.</h1>
-      <p>An AI assistant for someone they love. A gadget that can see. A personal Jarvis of their own. Every project starts with a real person and a real problem, and every decision belongs to the student.</p>
+      <p>A personal Jarvis of their own. A gadget that can see. A startup idea pitched to real mentors. Every project starts with a real person and a real problem, and every decision belongs to the student.</p>
       <div class="ctas">
-        <a class="cta primary" href="#workshops">Explore the workshops</a>
-        <a class="cta ghost" href="concepts/ai-helper/">Try the AI Helper Builder →</a>
+        <a class="cta primary" href="jarvis/">🦾 My workshop: Build Your Own Jarvis</a>
+        <a class="cta ghost" href="#workshops">Explore all the workshops →</a>
       </div>
     </div>
   </header>
@@ -170,22 +220,30 @@
   <main>
     <div class="wrap">
 
+      <section id="featured">
+        <div class="feature">
+          <div class="feature-text">
+            <div class="kicker">The workshop I'd lead first</div>
+            <h2>🦾 Build Your Own Jarvis</h2>
+            <p>Many kids have dreamed of having an AI assistant like the one in the Iron Man films. I built a real one: it runs on my Mac mini at home and wakes up when I say <strong>"Hey Jarvis."</strong> In this workshop, students meet mine live, then design and build their own.</p>
+            <div class="feature-ages">
+              <div><b>Ages 8–12</b><span>Design their Jarvis: its name, personality, voice, and rules. Then watch it come to life on the big screen.</span></div>
+              <div><b>Ages 13–15</b><span>Guided build: write its personality file and teach it a first skill.</span></div>
+              <div><b>Ages 16–18</b><span>Full build: their own agent with memory, skills, a schedule, and a wake word.</span></div>
+            </div>
+            <div class="ctas">
+              <a class="cta primary" href="jarvis/">See the workshop</a>
+              <a class="cta ghost" href="jarvis/#mine">How I built mine →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="workshops">
-        <h2>The workshops</h2>
+        <h2>More workshops</h2>
         <p class="lead">Each one stands on its own and ends with something students can show at home. Taken together, they form a path from using AI to building it.</p>
 
         <div class="workshops">
-          <article class="ws helper">
-            <div class="top"><span class="icon">🤖</span><span class="age">Ages 8–18</span></div>
-            <h3>Build Your Own AI Helper</h3>
-            <p>Students design an AI assistant for a real person in their life, such as a study buddy for a sibling or a recipe helper for a grandparent, then test it with them and improve it.</p>
-            <p class="builds"><strong>They learn:</strong> clear instructions, product thinking, and safety rules they write themselves.</p>
-            <div class="links">
-              <a class="go" href="concepts/ai-helper/">Try the builder</a>
-              <a href="concepts/#helper">Concept</a>
-            </div>
-          </article>
-
           <article class="ws gadget">
             <div class="top"><span class="icon">📷</span><span class="age">Ages 8–18</span></div>
             <h3>Invent a Smart Gadget</h3>
@@ -196,16 +254,29 @@
             </div>
           </article>
 
-          <article class="ws jarvis">
-            <div class="top"><span class="icon">🦾</span><span class="age">Ages 13–18</span></div>
-            <h3>Build Your Own Jarvis</h3>
-            <p>Students build a personal AI agent with a personality they write, a memory they control, skills they teach it, and tasks it runs on a schedule.</p>
-            <p class="builds"><strong>They learn:</strong> how AI agents work inside, and the trust decisions behind them.</p>
+          <article class="ws helper">
+            <div class="top"><span class="icon">🎮</span><span class="age">Ages 10–18</span></div>
+            <h3>AI Game Studio</h3>
+            <p>Students design a game and build it with an AI coding assistant, including a character with its own AI personality.</p>
+            <p class="builds"><strong>They learn:</strong> logic, game design, and how to direct AI to build what they imagine.</p>
             <div class="links">
-              <a class="go" href="jarvis/">Concept</a>
+              <a class="go" href="lab/#game">Idea</a>
             </div>
           </article>
+
+          <article class="ws jarvis">
+            <div class="top"><span class="icon">💡</span><span class="age">Ages 13–18</span></div>
+            <h3>AI Startup Studio</h3>
+            <p>Students take a real problem from customer interviews to a working AI prototype and a pitch at Demo Day.</p>
+            <p class="builds"><strong>They learn:</strong> entrepreneurship, teamwork, and presenting with evidence.</p>
+            <div class="links">
+              <a class="go" href="lab/#startup">Idea</a>
+              <a href="incubator/">Incubator</a>
+            </div>
+          </article>
+
         </div>
+        <p style="margin-top:14px"><a href="lab/">See all ten workshop ideas in the AI Lab →</a></p>
 
         <div class="thread portfolio">
           <span class="icon">🌐</span>
@@ -225,10 +296,10 @@
         <p class="lead">Students can join at any point, and each step builds on the last.</p>
         <div class="path">
           <div class="stage s1"><span class="n">1</span><strong>Show it</strong><span>Publish a portfolio</span></div>
-          <div class="stage s2"><span class="n">2</span><strong>Design AI</strong><span>Build an AI Helper</span></div>
+          <div class="stage s2"><span class="n">2</span><strong>Build an agent</strong><span>Create a Jarvis</span></div>
           <div class="stage s3"><span class="n">3</span><strong>Train AI</strong><span>Invent a Smart Gadget</span></div>
-          <div class="stage s4"><span class="n">4</span><strong>Build an agent</strong><span>Create a Jarvis</span></div>
-          <div class="stage s5"><span class="n">5</span><strong>Pitch it</strong><span>Present to a mentor</span></div>
+          <div class="stage s4"><span class="n">4</span><strong>Start up</strong><span>AI Startup Studio</span></div>
+          <div class="stage s5"><span class="n">5</span><strong>Launch it</strong><span>Demo Day and the incubator</span></div>
         </div>
       </section>
 
@@ -237,7 +308,15 @@
           <span class="icon">🧪</span>
           <span>
             <strong>See the bigger picture: the TRNT AI Lab</strong>
-            <span>Eleven workshop ideas across three tracks (Create, Build, Lead), with university mentors, Demo Days, and a format that runs across Canada and the US.</span>
+            <span>Ten workshop ideas across three tracks (Create, Build, Lead), with university mentors, Demo Days, and a format that runs across Canada and the US.</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="lab-teaser incubator" href="incubator/">
+          <span class="icon">🚀</span>
+          <span>
+            <strong>And beyond the classroom: the Student Product Incubator</strong>
+            <span>Students join a real product team or propose their own idea, move through a pipeline with clear success criteria, and the best products go to market with TRNT.</span>
           </span>
           <span class="arrow">→</span>
         </a>
@@ -267,6 +346,26 @@
   <footer>
     Prepared for TRNT Educational Institute by Bhavesh Ratanpal · Xappert Incorporated
   </footer>
+
+  <script>
+    // Hover opens the dropdowns on desktop; tapping the button toggles them on touch screens
+    const dropdowns = document.querySelectorAll(".menu .dd");
+    dropdowns.forEach((dd) => {
+      const btn = dd.querySelector("button");
+      btn.addEventListener("click", () => {
+        const open = !dd.classList.contains("open");
+        dropdowns.forEach((d) => { d.classList.remove("open"); d.querySelector("button").setAttribute("aria-expanded", "false"); });
+        dd.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", String(open));
+      });
+    });
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".menu .dd")) dropdowns.forEach((d) => { d.classList.remove("open"); d.querySelector("button").setAttribute("aria-expanded", "false"); });
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") dropdowns.forEach((d) => { d.classList.remove("open"); d.querySelector("button").setAttribute("aria-expanded", "false"); });
+    });
+  </script>
 
 </body>
 </html>

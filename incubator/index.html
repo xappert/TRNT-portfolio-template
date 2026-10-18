@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Product Incubator</title>
+  <meta name="description" content="How TRNT students could join real product teams or propose their own, move through an incubator pipeline with clear success criteria, and take promising products to market.">
+  <style>
+    :root {
+      --main: #4f46e5;
+      --soft: #eef2ff;
+      --grow: #16a34a;
+      --grow-soft: #f0fdf4;
+      --warn: #b45309;
+      --warn-soft: #fffbeb;
+      --stop: #b91c1c;
+      --stop-soft: #fef2f2;
+      --night: #0f172a;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: #f9fafb;
+      line-height: 1.6;
+    }
+    a { color: var(--main); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+
+    .topbar { background: var(--night); color: #cbd5e1; font-size: 0.88rem; }
+    .topbar .wrap { display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px; flex-wrap: wrap; }
+    .topbar a { color: #fff; text-decoration: none; font-weight: 600; }
+    .topbar a:hover { text-decoration: underline; }
+
+    header {
+      background: linear-gradient(135deg, var(--night) 0%, var(--main) 55%, var(--grow) 100%);
+      color: #fff;
+      padding: 56px 0 48px;
+    }
+    header .eyebrow { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; }
+    header h1 { font-size: 2.3rem; line-height: 1.2; margin: 8px 0 12px; max-width: 760px; }
+    header p { font-size: 1.08rem; opacity: 0.93; max-width: 700px; }
+
+    nav { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
+    nav .wrap { display: flex; gap: 4px; overflow-x: auto; }
+    nav a { white-space: nowrap; padding: 12px 10px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none; }
+    nav a:hover { color: var(--main); }
+
+    main { padding: 36px 0 48px; }
+    section { margin-bottom: 44px; scroll-margin-top: 60px; }
+    h2 { font-size: 1.6rem; margin-bottom: 6px; }
+    h3 { font-size: 1.1rem; margin-bottom: 6px; }
+    .lead { color: var(--muted); margin-bottom: 20px; max-width: 720px; }
+    .panel { background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    ul.tidy { padding-left: 18px; }
+    ul.tidy li { margin: 4px 0; }
+
+    /* Two ways in */
+    .doors { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .door { border-radius: 14px; padding: 22px; }
+    .door.join { background: var(--soft); }
+    .door.propose { background: var(--grow-soft); }
+    .door .icon { font-size: 2rem; }
+    .door h3 { font-size: 1.25rem; margin: 6px 0; }
+    .door.join h3 { color: var(--main); }
+    .door.propose h3 { color: var(--grow); }
+    .door ul { padding-left: 18px; font-size: 0.95rem; }
+    .door li { margin: 4px 0; }
+    .merge { text-align: center; color: var(--muted); font-weight: 600; margin-top: 14px; }
+
+    /* Placement */
+    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; counter-reset: s; }
+    .stepc { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); counter-increment: s; }
+    .stepc::before {
+      content: counter(s); display: inline-flex; width: 26px; height: 26px; border-radius: 50%;
+      background: var(--main); color: #fff; font-weight: 800; font-size: 0.85rem; align-items: center; justify-content: center;
+    }
+    .stepc strong { display: block; margin-top: 6px; }
+    .stepc span { font-size: 0.88rem; color: var(--muted); }
+
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; }
+    .roles span { background: var(--soft); color: var(--main); font-weight: 600; font-size: 0.88rem; padding: 4px 12px; border-radius: 999px; }
+    .lvl { display: grid; grid-template-columns: 30px 1fr; gap: 4px 10px; align-items: start; margin-top: 10px; }
+    .lvl b { display: inline-flex; width: 30px; height: 30px; border-radius: 8px; background: var(--main); color: #fff; align-items: center; justify-content: center; font-size: 0.85rem; }
+    .lvl p { font-size: 0.93rem; }
+    .lvl p small { color: var(--muted); display: block; }
+
+    /* Pipeline */
+    .pipe { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; }
+    .stage { position: relative; padding: 0 6px; }
+    .stage .bar { height: 10px; background: var(--c); border-radius: 0; }
+    .stage:first-child .bar { border-radius: 5px 0 0 5px; }
+    .stage:last-child .bar { border-radius: 0 5px 5px 0; }
+    .stage .dot { width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 4px solid var(--c); margin: -16px auto 0; position: relative; }
+    .stage h3 { text-align: center; margin-top: 8px; font-size: 1rem; color: var(--c); }
+    .stage .dur { text-align: center; font-size: 0.8rem; color: var(--muted); }
+    .stage .box { background: #fff; border-radius: 10px; padding: 12px; margin-top: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); font-size: 0.86rem; }
+    .stage .box b { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-top: 6px; }
+    .stage .box b:first-child { margin-top: 0; }
+    .s0 { --c: #94a3b8; } .s1 { --c: #818cf8; } .s2 { --c: #6366f1; } .s3 { --c: #4f46e5; } .s4 { --c: #16a34a; } .s5 { --c: #15803d; }
+
+    /* Scorecard tool */
+    .tool { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
+    .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .tabs button {
+      font: inherit; font-size: 0.9rem; font-weight: 600; padding: 6px 14px; border-radius: 999px; cursor: pointer;
+      border: 2px solid var(--line); background: #fff; color: var(--ink);
+    }
+    .tabs button[aria-pressed="true"] { border-color: var(--main); background: var(--main); color: #fff; }
+    .crit { padding: 10px 0; border-top: 1px solid var(--line); }
+    .crit:first-child { border-top: none; }
+    .crit .top { display: flex; justify-content: space-between; gap: 8px; font-size: 0.95rem; }
+    .crit .top strong { font-weight: 600; }
+    .crit .top span { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+    .crit p { font-size: 0.85rem; color: var(--muted); }
+    .crit input[type=range] { width: 100%; accent-color: var(--main); margin-top: 6px; }
+    .crit .val { font-weight: 700; color: var(--main); }
+    .result { position: sticky; top: 64px; text-align: center; border-radius: 14px; padding: 24px; background: var(--rs, var(--soft)); }
+    .result .score { font-size: 3rem; font-weight: 800; line-height: 1; color: var(--rc, var(--main)); }
+    .result .of { color: var(--muted); font-size: 0.9rem; }
+    .result .decision { font-size: 1.3rem; font-weight: 800; margin-top: 10px; color: var(--rc, var(--main)); }
+    .result p { font-size: 0.92rem; margin-top: 6px; }
+    .result .rules { margin-top: 14px; font-size: 0.82rem; color: var(--muted); text-align: left; }
+    .ex { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    td:first-child { font-weight: 600; }
+
+    .note {
+      background: var(--warn-soft); border-left: 4px solid var(--warn);
+      padding: 14px 16px; border-radius: 0 8px 8px 0; margin-top: 16px; font-size: 0.95rem;
+    }
+
+    .qs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+    .qs div { background: #fff; border-radius: 12px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .qs strong { display: block; }
+    .qs span { font-size: 0.92rem; color: var(--muted); }
+
+    .why { background: var(--night); color: #e2e8f0; border-radius: 14px; padding: 26px; }
+    .why h2 { color: #fff; }
+    .why p { max-width: 760px; }
+    .why p + p { margin-top: 10px; }
+    .why a { color: #93c5fd; }
+
+    footer { text-align: center; color: #9ca3af; font-size: 0.85rem; padding: 0 16px 32px; }
+
+    @media (max-width: 860px) {
+      header h1 { font-size: 1.8rem; }
+      .doors, .two, .tool { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .pipe { grid-template-columns: 1fr; gap: 12px; }
+      .stage { padding: 0; display: grid; grid-template-columns: 6px 1fr; gap: 0 14px; }
+      .stage .bar { grid-row: span 3; height: auto; border-radius: 3px !important; }
+      .stage .dot { display: none; }
+      .stage h3, .stage .dur { text-align: left; margin-top: 0; }
+      .result { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <a href="../">← TRNT AI &amp; Innovation Lab: all workshops</a>
+      <span>Student Product Incubator · Proposal</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">From classroom to company</div>
+      <h1>A Student Product Incubator: real teams, real products, real measures.</h1>
+      <p>Students join a TRNT product team that matches their level, or propose their own product. Every product moves through the same pipeline, with clear evidence required at each stage. The ones with real potential get TRNT's help to become products people pay for.</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#ways">Two ways in</a>
+      <a href="#placement">Placement</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#scorecard">Try the scorecard</a>
+      <a href="#growth">Student growth</a>
+      <a href="#market">Going to market</a>
+      <a href="#questions">Open questions</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap">
+
+      <section id="ways">
+        <h2>Two ways in</h2>
+        <p class="lead">Some students want to join something real right away. Others already have an idea. Both are welcome, and both paths meet in the same pipeline.</p>
+        <div class="doors">
+          <div class="door join">
+            <div class="icon">🧩</div>
+            <h3>Join a product team</h3>
+            <ul>
+              <li>TRNT keeps a pool of live products, for example from TRNT itself, partner companies, or non-profits.</li>
+              <li>Students are placed in a role that matches their proficiency and grow into bigger roles over time.</li>
+              <li>They learn how real product teams work: roadmaps, users, deadlines, and shipping.</li>
+            </ul>
+          </div>
+          <div class="door propose">
+            <div class="icon">💡</div>
+            <h3>Propose your own product</h3>
+            <ul>
+              <li>Any student or team can pitch an idea at an Idea Review.</li>
+              <li>The <a href="../lab/#startup">AI Startup Studio</a> workshop is the on-ramp: problem, customers, prototype, pitch.</li>
+              <li>Approved ideas get a team, a mentor, and a place in the pipeline.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="merge">↓ Both paths enter the same pipeline, with the same success criteria ↓</p>
+      </section>
+
+      <section id="placement">
+        <h2>How students are placed</h2>
+        <p class="lead">Placement is based on evidence, not guesswork. The workshops already produce that evidence: a portfolio of real projects.</p>
+        <div class="steps">
+          <div class="stepc"><strong>Skill profile</strong><span>Built from the student's portfolio, workshop record, and a short hands-on skills check.</span></div>
+          <div class="stepc"><strong>Interests</strong><span>Students rank the products and roles they want.</span></div>
+          <div class="stepc"><strong>Matching</strong><span>TRNT matches on proficiency, interest, and team balance.</span></div>
+          <div class="stepc"><strong>Trial sprint</strong><span>Two weeks on the team. Student and team both confirm the fit.</span></div>
+          <div class="stepc"><strong>Term review</strong><span>Each term, students can move up a level or switch roles.</span></div>
+        </div>
+
+        <div class="two">
+          <div class="panel">
+            <h3>Roles on a product team</h3>
+            <div class="roles">
+              <span>Product lead</span><span>AI builder</span><span>Designer</span><span>User researcher</span><span>Data &amp; testing</span><span>Growth &amp; marketing</span>
+            </div>
+            <p style="margin-top:12px; font-size:0.93rem; color:var(--muted)">Ages 8–12 take part as <strong>junior testers and idea scouts</strong>. They try products, give feedback, and suggest problems worth solving, which keeps the pipeline full and gets them ready for a team later.</p>
+          </div>
+          <div class="panel">
+            <h3>Proficiency levels</h3>
+            <div class="lvl"><b>L1</b><p>Apprentice<small>Completed lab workshops and has a portfolio. Works on tasks with a mentor.</small></p></div>
+            <div class="lvl"><b>L2</b><p>Contributor<small>Has delivered at least one team project. Owns features from start to finish.</small></p></div>
+            <div class="lvl"><b>L3</b><p>Lead<small>Has led a team through a gate. Can lead a product or propose and run their own.</small></p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pipeline">
+        <h2>The incubator pipeline</h2>
+        <p class="lead">Six stages. Each ends in a gate, a short review where the team shows evidence and a panel of TRNT staff and mentors decides whether to <strong>advance</strong>, <strong>iterate</strong>, or <strong>park</strong> it.</p>
+        <div class="pipe">
+          <div class="stage s0"><div class="bar"></div><div class="dot"></div><h3>0 · Idea</h3><div class="dur">1–2 weeks</div>
+            <div class="box"><b>Team produces</b>A one-page pitch: the problem, who has it, and why it matters.<b>Gate</b>Is the problem real and specific? Is the team committed?</div></div>
+          <div class="stage s1"><div class="bar"></div><div class="dot"></div><h3>1 · Discover</h3><div class="dur">3–4 weeks</div>
+            <div class="box"><b>Team produces</b>10+ user interviews and a problem statement backed by quotes.<b>Gate</b>Do most interviewees confirm the problem matters?</div></div>
+          <div class="stage s2"><div class="bar"></div><div class="dot"></div><h3>2 · Prototype</h3><div class="dur">4–6 weeks</div>
+            <div class="box"><b>Team produces</b>A working AI prototype, tested with 5+ real users.<b>Gate</b>Can users complete the core task? Would they use it again?</div></div>
+          <div class="stage s3"><div class="bar"></div><div class="dot"></div><h3>3 · Pilot</h3><div class="dur">6–8 weeks</div>
+            <div class="box"><b>Team produces</b>A product used by a real group, such as a school, club, or partner.<b>Gate</b>Do people keep using it? Will someone pay or sponsor it?</div></div>
+          <div class="stage s4"><div class="bar"></div><div class="dot"></div><h3>4 · Launch</h3><div class="dur">1 term</div>
+            <div class="box"><b>Team produces</b>Pricing, a business model, and a launch plan, built with TRNT.<b>Gate</b>TRNT's investment review: commit resources to sell it?</div></div>
+          <div class="stage s5"><div class="bar"></div><div class="dot"></div><h3>5 · Grow</h3><div class="dur">Ongoing</div>
+            <div class="box"><b>Team produces</b>Revenue, growth, and new versions.<b>Outcome</b>A product run by TRNT, a spin-out company, or a licence to a partner.</div></div>
+        </div>
+      </section>
+
+      <section id="scorecard">
+        <h2>Success criteria you can measure</h2>
+        <p class="lead">Every gate uses a weighted scorecard, so decisions are consistent across teams, mentors, and locations, and products can be ranked fairly. Try it: pick a gate, score a sample team, and see the decision.</p>
+        <div class="panel tool">
+          <div>
+            <div class="tabs" role="group" aria-label="Choose a gate">
+              <button type="button" aria-pressed="true" data-gate="discover">Discover gate</button>
+              <button type="button" aria-pressed="false" data-gate="prototype">Prototype gate</button>
+              <button type="button" aria-pressed="false" data-gate="pilot">Pilot gate</button>
+            </div>
+            <p class="ex" id="example"></p>
+            <div id="criteria"></div>
+          </div>
+          <div class="result" id="result">
+            <div class="score" id="score">0.0</div>
+            <div class="of">weighted score out of 5</div>
+            <div class="decision" id="decision"></div>
+            <p id="advice"></p>
+            <div class="rules">
+              <strong>Decision rules (illustrative)</strong><br>
+              4.0+ and no criterion below 3: advance<br>
+              2.5–3.9, or any criterion below 3: iterate<br>
+              Below 2.5: park, or pivot to a new idea
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="growth">
+        <h2>Measuring students, not just products</h2>
+        <p class="lead">A product can fail while the student succeeds. A separate growth scorecard tracks each student every term. It's rated by a mentor, by teammates, and by the student, and it drives placement and level changes.</p>
+        <div class="panel">
+          <table>
+            <thead><tr><th>Dimension</th><th>What we look for</th></tr></thead>
+            <tbody>
+              <tr><td>Craft</td><td>The quality of their work in their role: code, design, research, or growth</td></tr>
+              <tr><td>Ownership</td><td>Takes responsibility for outcomes and follows through without being chased</td></tr>
+              <tr><td>Collaboration</td><td>Makes the team better: shares, helps, and handles disagreement well</td></tr>
+              <tr><td>Communication</td><td>Explains decisions clearly in writing, in reviews, and at Demo Day</td></tr>
+              <tr><td>Learning speed</td><td>How quickly they improve after feedback</td></tr>
+              <tr><td>Responsible AI</td><td>Checks AI output, protects user data, and is honest about limits</td></tr>
+            </tbody>
+          </table>
+          <div class="note">
+            <strong>Rankings with care.</strong> Products are ranked openly at every gate. Student scores and rankings are used for placement and leadership selection, and are shared privately with the student and their family. Public recognition happens through Demo Day awards and gate milestones, never public leaderboards of children.
+          </div>
+        </div>
+      </section>
+
+      <section id="market">
+        <h2>From student product to commercial product</h2>
+        <div class="two" style="margin-top:0">
+          <div class="panel">
+            <h3>🏢 What TRNT provides</h3>
+            <ul class="tidy">
+              <li>Mentors from industry and universities at every gate</li>
+              <li>Engineering and design support to make a prototype production-ready</li>
+              <li>Legal setup, pricing, and go-to-market help</li>
+              <li>Pilot partners: schools, clubs, and partner organisations</li>
+              <li>Funding or resources for products that pass the launch gate</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>🎓 What students gain</h3>
+            <ul class="tidy">
+              <li>Credit as founders or contributors on a real, live product</li>
+              <li>A share in the success, on terms agreed with families in advance</li>
+              <li>Gate milestones and product metrics for university applications</li>
+              <li>An early, honest read on their entrepreneurial strengths</li>
+              <li>A mentor network that lasts beyond the program</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="questions">
+        <h2>Open questions to agree together</h2>
+        <p class="lead">These would shape the details. I'd suggest settling them with TRNT's leadership and legal advisers before the first cohort.</p>
+        <div class="qs">
+          <div><strong>Ownership and IP</strong><span>Who owns a product a student proposes, compared with one from TRNT's pool?</span></div>
+          <div><strong>Sharing in success</strong><span>Revenue share, equity, or a prize? How is it handled for students under 18, with parental agreement?</span></div>
+          <div><strong>The product pool</strong><span>Which products go in: TRNT's own, partner companies, non-profits? Who maintains the pool?</span></div>
+          <div><strong>Gate panels</strong><span>Who sits on them, and how are mentors from different locations kept consistent?</span></div>
+          <div><strong>Time commitment</strong><span>How many hours per week on a team, and how does it fit around school and exams?</span></div>
+          <div><strong>Data and privacy</strong><span>What rules apply to products that collect user data, especially data from other young people?</span></div>
+        </div>
+      </section>
+
+      <section class="why">
+        <h2>Why I'd like to help build this</h2>
+        <p>This is the work I already do. At <a href="https://www.xappert.ca">Xappert</a>, XappertOS turns ideas into ventures through structured stages, evidence-based decisions, and AI-guided execution. The incubator applies the same thinking at a student's level.</p>
+        <p>AI can also make the incubator consistent at scale. Each stage produces standard documents (interview notes, a problem statement, a pilot report), an AI coach gives teams feedback against the criteria before each gate, and TRNT gets one comparable view of every team across Canada and the US.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    Prepared for TRNT Educational Institute by Bhavesh Ratanpal · <a href="https://www.bhaveshratanpal.ca">bhaveshratanpal.ca</a> · <a href="https://www.xappert.ca">xappert.ca</a>
+  </footer>
+
+  <script>
+    // Weights add up to 100 per gate; scores are 1–5.
+    const GATES = {
+      discover: {
+        example: "Sample team: three Grade 10 students exploring why students forget homework deadlines.",
+        criteria: [
+          { name: "Problem evidence", hint: "Interviews show the problem is real and frequent", w: 35, v: 4 },
+          { name: "Target user clarity", hint: "They can name exactly who has the problem", w: 25, v: 4 },
+          { name: "Insight quality", hint: "They learned something the team didn't expect", w: 20, v: 3 },
+          { name: "Team execution", hint: "Interviews were done on time, and notes are shared", w: 20, v: 5 }
+        ]
+      },
+      prototype: {
+        example: "Sample team: an AI study planner, tested with 6 students.",
+        criteria: [
+          { name: "Core task success", hint: "Testers completed the main task without help", w: 30, v: 4 },
+          { name: "Would use again", hint: "Testers said they would come back to it", w: 25, v: 3 },
+          { name: "AI quality and safety", hint: "Outputs are checked, accurate, and safe", w: 25, v: 4 },
+          { name: "Team execution", hint: "Shipped on schedule and fixed issues found in testing", w: 20, v: 4 }
+        ]
+      },
+      pilot: {
+        example: "Sample team: the study planner, piloted with one school club for 6 weeks.",
+        criteria: [
+          { name: "Retention", hint: "Pilot users are still active after 4 weeks", w: 30, v: 3 },
+          { name: "Willingness to pay", hint: "A sponsor, school, or users would pay for it", w: 30, v: 2 },
+          { name: "User feedback", hint: "Users recommend it to others", w: 20, v: 4 },
+          { name: "Business case", hint: "Costs, pricing, and market size make sense", w: 20, v: 3 }
+        ]
+      }
+    };
+
+    const $ = (id) => document.getElementById(id);
+    let gate = "discover";
+
+    function renderCriteria() {
+      const g = GATES[gate];
+      $("example").textContent = g.example;
+      $("criteria").replaceChildren(...g.criteria.map((c, i) => {
+        const row = document.createElement("div");
+        row.className = "crit";
+        row.innerHTML = `<div class="top"><strong></strong><span>weight ${c.w}% · score <span class="val">${c.v}</span>/5</span></div><p></p>
+          <input type="range" min="1" max="5" step="1" value="${c.v}" aria-label="">`;
+        row.querySelector("strong").textContent = c.name;
+        row.querySelector("p").textContent = c.hint;
+        const input = row.querySelector("input");
+        input.setAttribute("aria-label", c.name + " score");
+        input.addEventListener("input", () => {
+          c.v = Number(input.value);
+          row.querySelector(".val").textContent = c.v;
+          score();
+        });
+        return row;
+      }));
+      score();
+    }
+
+    function score() {
+      const cs = GATES[gate].criteria;
+      const total = cs.reduce((s, c) => s + c.v * c.w, 0) / 100;
+      const weakest = cs.reduce((a, c) => (c.v < a.v ? c : a));
+      let decision, advice, colour, soft;
+      if (total >= 4 && weakest.v >= 3) {
+        decision = "Advance ✓"; colour = "var(--grow)"; soft = "var(--grow-soft)";
+        advice = "Strong evidence across the board. The team moves to the next stage.";
+      } else if (total >= 2.5) {
+        decision = "Iterate ↻"; colour = "var(--warn)"; soft = "var(--warn-soft)";
+        advice = `Promising, but "${weakest.name}" needs work. The team gets a focused sprint, then reviews again.`;
+      } else {
+        decision = "Park or pivot"; colour = "var(--stop)"; soft = "var(--stop-soft)";
+        advice = "Not enough evidence yet. The team writes up what they learned, and members can pivot or join another product.";
+      }
+      $("score").textContent = total.toFixed(1);
+      $("decision").textContent = decision;
+      $("advice").textContent = advice;
+      $("result").style.setProperty("--rc", colour);
+      $("result").style.setProperty("--rs", soft);
+    }
+
+    document.querySelectorAll("[data-gate]").forEach((btn) => btn.addEventListener("click", () => {
+      gate = btn.dataset.gate;
+      document.querySelectorAll("[data-gate]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      renderCriteria();
+    }));
+
+    renderCriteria();
+  </script>
+
+</body>
+</html>

@@ -67,6 +67,4 @@ Then **edit what it gives you**. Make it sound like you, and remove anything tha
 
 ## What's next
 
-Each workshop adds a new project to the **My projects** section, like an AI helper you design for someone you know or a smart gadget that uses a model you train yourself. By the end, you'll have a portfolio you can include in university and program applications.
-
-Already built an AI helper? Its builder gives you a ready-made project card. Paste it into **My projects**, replacing one of the 🔜 cards.
+Each workshop adds a new project to the **My projects** section, like your own Jarvis or a smart gadget that uses a model you train yourself. By the end, you'll have a portfolio you can include in university and program applications.

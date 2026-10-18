@@ -3,18 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Concepts: What Students Build with AI</title>
+  <title>Invent a Smart Gadget</title>
   <style>
     :root {
-      --main: #2563eb;
-      --soft: #eff6ff;
+      --main: #0f766e;
+      --soft: #f0fdfa;
       --ink: #1f2937;
       --muted: #6b7280;
       --line: #e5e7eb;
-      --violet: #7c3aed;
-      --violet-soft: #f5f3ff;
-      --teal: #0f766e;
-      --teal-soft: #f0fdfa;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -28,7 +24,7 @@
     .topbar a { color: #fff; text-decoration: none; font-weight: 600; }
     .topbar a:hover { text-decoration: underline; }
     header {
-      background: linear-gradient(135deg, var(--main), var(--violet));
+      background: linear-gradient(135deg, #0f766e, #0369a1);
       color: #fff;
       padding: 48px 16px 40px;
     }
@@ -57,54 +53,28 @@
     li { margin: 4px 0; }
     a { color: var(--main); }
 
-    .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-    .pick { display: block; border-radius: 12px; padding: 20px; text-decoration: none; color: var(--ink); border: 2px solid transparent; }
-    .pick:hover { border-color: currentColor; }
-    .pick.helper { background: var(--violet-soft); color: var(--violet); }
-    .pick.gadget { background: var(--teal-soft); color: var(--teal); }
-    .pick .icon { font-size: 2rem; }
-    .pick strong { display: block; font-size: 1.1rem; margin-top: 6px; }
-    .pick span { display: block; color: var(--ink); font-size: 0.95rem; margin-top: 4px; }
-
-    .concept h2 { display: flex; align-items: center; gap: 10px; }
-    .concept.helper h2 { color: var(--violet); }
-    .concept.gadget h2 { color: var(--teal); }
-    .badge { display: inline-block; font-size: 0.8rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; color: #fff; margin-bottom: 8px; }
-    .helper .badge { background: var(--violet); }
-    .gadget .badge { background: var(--teal); }
-
     .q { border-top: 1px solid var(--line); padding: 16px 0 4px; }
+    .q:first-of-type { border-top: none; padding-top: 0; }
     .q h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 6px; }
 
-    .callout { border-radius: 10px; padding: 16px 18px; margin-top: 14px; }
-    .helper .callout { background: var(--violet-soft); }
-    .gadget .callout { background: var(--teal-soft); }
+    .callout { border-radius: 10px; padding: 16px 18px; margin-top: 14px; background: var(--soft); }
     .callout .btn {
       display: inline-block; margin-top: 10px; padding: 8px 16px; border-radius: 8px;
-      color: #fff; font-weight: 700; text-decoration: none;
+      color: #fff; background: var(--main); font-weight: 700; text-decoration: none;
     }
-    .helper .btn { background: var(--violet); }
-    .gadget .btn { background: var(--teal); }
 
     .path { list-style: none; padding-left: 0; counter-reset: s; }
     .path li { counter-increment: s; position: relative; padding: 6px 0 6px 40px; }
     .path li::before {
       content: counter(s); position: absolute; left: 0; top: 6px;
-      width: 26px; height: 26px; border-radius: 50%; color: #fff;
+      width: 26px; height: 26px; border-radius: 50%; color: #fff; background: var(--main);
       font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center;
     }
-    .helper .path li::before { background: var(--violet); }
-    .gadget .path li::before { background: var(--teal); }
 
     table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
     th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
     th { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
     td:first-child { font-weight: 600; white-space: nowrap; }
-
-    .outcome {
-      background: var(--soft); border-left: 4px solid var(--main);
-      padding: 14px 16px; border-radius: 0 8px 8px 0; margin-top: 18px;
-    }
 
     footer { text-align: center; color: #9ca3af; font-size: 0.85rem; padding-bottom: 32px; }
 
@@ -119,98 +89,36 @@
   <div class="topbar">
     <div class="bar">
       <a href="../">← TRNT AI &amp; Innovation Lab: all workshops</a>
-      <span>AI Helper &amp; Smart Gadget · Ages 8–18</span>
+      <span>Smart Gadget · Ages 8–18</span>
     </div>
   </div>
 
   <header>
     <div class="wrap">
-      <div class="eyebrow">TRNT AI &amp; Innovation · Project Concepts</div>
-      <h1>Two things students would love to build with AI</h1>
-      <p>Each concept starts with something a student can make and show off in one session, then grows into a real project they own: their idea, their decisions, their evidence. The portfolio becomes the place where those projects live.</p>
+      <div class="eyebrow">Workshop concept · Vision AI</div>
+      <h1>📷 Invent a Smart Gadget</h1>
+      <p>Teach a computer to see, then invent something with it. Students train their own AI model in minutes and turn it into an invention that solves a real problem.</p>
     </div>
   </header>
 
   <nav>
     <div class="wrap">
-      <a href="#overview">Overview</a>
-      <a href="#helper">AI Helper</a>
-      <a href="#gadget">Smart Gadget</a>
+      <a href="#gadget">The concept</a>
       <a href="#ages">By age</a>
       <a href="#portfolio">Portfolio</a>
-      <a href="#approach">Approach</a>
     </div>
   </nav>
 
   <main>
     <div class="wrap">
 
-      <section id="overview">
-        <h2>The concepts at a glance</h2>
-        <p class="lead">One uses language AI, one uses vision AI. Together they cover ages 8–18 and lead naturally into entrepreneurship. Teenagers can then take the AI Helper further and <a href="../jarvis/">build their own Jarvis</a>.</p>
-        <div class="pair">
-          <a class="pick helper" href="#helper">
-            <div class="icon">🤖</div>
-            <strong>Build Your Own AI Helper</strong>
-            <span>Students design an AI assistant for a real person in their life, test it with them, and improve it like a product team.</span>
-          </a>
-          <a class="pick gadget" href="#gadget">
-            <div class="icon">📷</div>
-            <strong>Invent a Smart Gadget</strong>
-            <span>Students teach a computer to recognise images, sounds, or poses, and turn it into an invention that solves a problem.</span>
-          </a>
-        </div>
-      </section>
-
-      <section id="helper" class="concept helper">
-        <span class="badge">Concept 1 · Ages 8–18</span>
-        <h2>🤖 Build Your Own AI Helper</h2>
-        <p class="lead">From "I use AI" to "I designed one."</p>
+      <section id="gadget">
+        <h2>The concept</h2>
+        <p class="lead">Each part answers one of four questions: what students make, why families care, where it leads, and what students decide.</p>
 
         <div class="q">
           <h3>Student outcome</h3>
-          <p>Each student picks a real person and a real problem: a study buddy for a younger sibling, a recipe helper for a grandparent, a practice coach for their basketball team. They design an AI assistant for that person by choosing its name, personality, what it's good at, its rules, and what it should refuse to do. By the end of the session they have a working helper, tested with real questions, and a one-page "helper blueprint" that explains their design choices.</p>
-        </div>
-
-        <div class="q">
-          <h3>Why families would love it</h3>
-          <ul>
-            <li>Parents hear about AI every day and wonder how their child should use it. Here the child learns to <strong>build</strong> it responsibly, not just consume it.</li>
-            <li>The helper is made for someone at home, so the family is part of the project. Grandma actually gets to try her recipe helper.</li>
-            <li>Safety is part of the design, not a lecture. Students write rules like "never ask for personal information" and "give hints, don't do the homework," then check that their helper follows them.</li>
-          </ul>
-        </div>
-
-        <div class="q">
-          <h3>How it grows into a deeper project</h3>
-          <ol class="path">
-            <li><strong>Design and test:</strong> build the first helper and try it with three real questions.</li>
-            <li><strong>Give it knowledge:</strong> the student writes a fact sheet (team plays, family recipes, study notes) and makes the helper answer only from it.</li>
-            <li><strong>Measure it:</strong> run a test sheet, score the answers, find where it gets things wrong, and fix it. This is how real AI teams work.</li>
-            <li><strong>Give it a face:</strong> design the app screen people would use and publish it on the student's portfolio.</li>
-            <li><strong>Pitch it:</strong> present the helper to a visiting mentor as a product: who it's for, the problem, and the evidence that it works.</li>
-          </ol>
-        </div>
-
-        <div class="q">
-          <h3>Students' own ideas and decisions</h3>
-          <p>Every choice belongs to the student: who it's for, what problem matters, how it should talk, and where the line is on what it won't do. They also decide what "good" means, by writing the test questions and judging the answers themselves. When the helper gets something wrong, they choose the fix. These are product decisions, and they are the core skill.</p>
-        </div>
-
-        <div class="callout">
-          <strong>Try the student activity.</strong> This is the builder students use in the first session to make their design decisions. It turns their choices into a blueprint and ready-to-use helper instructions.
-          <br><a class="btn" href="ai-helper/">Open the AI Helper Builder →</a>
-        </div>
-      </section>
-
-      <section id="gadget" class="concept gadget">
-        <span class="badge">Concept 2 · Ages 8–18</span>
-        <h2>📷 Invent a Smart Gadget</h2>
-        <p class="lead">Teach a computer to see, then invent something with it.</p>
-
-        <div class="q">
-          <h3>Student outcome</h3>
-          <p>Students train their own image, sound, or pose model with Google's Teachable Machine, a free browser tool with no accounts or code needed. Then they turn it into an invention: a recycling sorter that tells paper from plastic, a posture coach that notices slouching, a reader for sign-language letters, a pet-door helper that recognises their dog. They leave with a working model that runs on a web page in their portfolio, on any laptop with a camera.</p>
+          <p>Students train their own image, sound, or pose model with Google's Teachable Machine, a free browser tool with no accounts or code needed. Then they turn it into an invention: a recycling sorter that tells paper from plastic, a posture coach that notices slouching, a reader for sign-language letters, a pet-door gadget that recognises their dog. They leave with a working model that runs on a web page in their portfolio, on any laptop with a camera.</p>
         </div>
 
         <div class="q">
@@ -245,43 +153,22 @@
       </section>
 
       <section id="ages">
-        <h2>How each concept adapts by age</h2>
-        <p class="lead">Every age group makes the same kind of thing. What changes is who does the technical steps and how deep the thinking goes. GitHub and AI accounts are only for students aged 13 and over, with parental consent.</p>
+        <h2>How it adapts by age</h2>
+        <p class="lead">Every age group invents something. What changes is who does the technical steps and how deep the thinking goes.</p>
         <table>
-          <thead><tr><th>Age</th><th>🤖 AI Helper</th><th>📷 Smart Gadget</th></tr></thead>
+          <thead><tr><th>Age</th><th>What students do</th></tr></thead>
           <tbody>
-            <tr>
-              <td>8–10</td>
-              <td>Design the helper on a paper card. The instructor runs it on the projector, and the class tests it together.</td>
-              <td>Train a model together in small groups (for example, happy and sad faces, or rock, paper, scissors) and invent a use for it.</td>
-            </tr>
-            <tr>
-              <td>11–12</td>
-              <td>Use the Helper Builder to make every design choice. The instructor runs their helper live and they score the answers.</td>
-              <td>Train their own model, test it with classmates, and improve it.</td>
-            </tr>
-            <tr>
-              <td>13–18</td>
-              <td>The full product cycle: user interview, design, test sheet, knowledge file, and a pitch.</td>
-              <td>A full invention with a fairness test, before-and-after results, and an optional micro:bit build.</td>
-            </tr>
+            <tr><td>8–10</td><td>Train a model together in small groups (for example, happy and sad faces, or rock, paper, scissors) and invent a use for it.</td></tr>
+            <tr><td>11–12</td><td>Train their own model, test it with classmates, and improve it.</td></tr>
+            <tr><td>13–18</td><td>A full invention with a fairness test, before-and-after results, and an optional micro:bit build.</td></tr>
           </tbody>
         </table>
       </section>
 
       <section id="portfolio">
         <h2>Where the portfolio fits</h2>
-        <p>The portfolio isn't the headline. It's the trophy shelf. Each helper and gadget gets a project card on the student's own website, with what they built, who it's for, and what they learned. Over a term it becomes evidence of real work for university and program applications, written up the way admissions essays and interviews ask for.</p>
-        <p>The <a href="../workshop/">first-session plan</a> and the <a href="../portfolio/">sample student page</a> already exist, so the portfolio can be set up in any session where students have something to put on it.</p>
-      </section>
-
-      <section id="approach">
-        <h2>Why these two, and how I'd run them</h2>
-        <p>I build AI products for a living. At Xappert, our product work starts from what users need and then tests whether the solution actually works for them. These concepts give students that same process at their level: find a real person, solve a real problem, test it, improve it, and explain it. It's the bridge between learning about AI and the entrepreneurial thinking TRNT wants students to develop.</p>
-        <div class="outcome">
-          <strong>Safety by design:</strong> students use first names only, and no personal information goes into any AI tool. Students under 13 never need an account, because the instructor runs the AI. AI helps students build and test their projects, and public pages never hold passwords or API keys.
-        </div>
-        <p style="margin-top:16px">A good next step is to agree on which concept to lead with. I can then shape the teaching format, session length, and materials around it.</p>
+        <p>Each gadget gets a project card on the student's own website, with what they built, who it's for, and what they learned. Over a term, the portfolio becomes evidence of real work for university and program applications.</p>
+        <p>See the <a href="../jarvis/">featured Jarvis workshop</a>, the <a href="../lab/">full list of workshop ideas</a>, and the <a href="../workshop/">portfolio session plan</a>.</p>
       </section>
 
     </div>
