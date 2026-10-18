@@ -4,8 +4,8 @@ A starter website you can make your own and publish on the internet in about 15 
 
 **Live example:** https://xappert.github.io/TRNT-portfolio-template/
 
-> **Instructors:** the workshop plan is at https://xappert.github.io/TRNT-portfolio-template/workshop/
-> **Students:** you can ignore the `workshop` folder. Only `index.html` is your page.
+> **Instructors:** the project concepts are at https://xappert.github.io/TRNT-portfolio-template/concepts/ and the first-session plan is at https://xappert.github.io/TRNT-portfolio-template/workshop/
+> **Students:** you can ignore the `concepts` and `workshop` folders. Only `index.html` is your page.
 
 ---
 
@@ -68,4 +68,6 @@ Then **edit what it gives you**. Make it sound like you, and remove anything tha
 
 ## What's next
 
-Each workshop adds a new project to the **My projects** section. By the end, you'll have a portfolio you can include in university and program applications.
+Each workshop adds a new project to the **My projects** section, like an AI helper you design for someone you know or a smart gadget that uses a model you train yourself. By the end, you'll have a portfolio you can include in university and program applications.
+
+Already built an AI helper? Its builder gives you a ready-made project card. Paste it into **My projects**, replacing one of the 🔜 cards.
